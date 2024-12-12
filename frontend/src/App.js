@@ -1,5 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+import LandingPage from './LandingPage';
+import SelectionPage from './SelectionPage';
+import Navbar from './Navbar';
+import NotFound from './NotFound';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 function App() {
