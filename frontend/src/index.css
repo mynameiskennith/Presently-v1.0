@@ -1,105 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
-
-/* base styles */
 * {
   margin: 0;
-  font-family: "Quicksand";
-  color: #333;
+  font-family: 'Arial', sans-serif;
 }
 .navbar {
   padding: 20px;
   display: flex;
   align-items: center;
-  max-width: 600px;
+  max-width: auto;
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
+
 }
 .navbar h1 {
-  color: #f1356d;
+  color: #FF6347;
+  font-size: 2rem;
 }
 .navbar .links {
   margin-left: auto;
+  color: #FF6347 ;
 }
-.navbar a {
-  margin-left: 16px;
-  text-decoration: none;
-  padding: 6px;
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  margin: 0;
 }
-.navbar a:hover {
-  color: #f1356d;
-}
-.content {
-  max-width: 600px;
-  margin: 40px auto;
+
+.heading {
+  flex: 1;
   padding: 20px;
+  text-align: left; /* Aligns the heading to the left */
+  margin-bottom: 20px;
 }
 
-/* blog previews / list */
-.blog-preview {
-  padding: 10px 16px;
-  margin: 20px 0;
-  border-bottom: 1px solid #fafafa;
-}
-.blog-preview:hover {
-  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
-}
-.blog-preview h2 {
-  font-size: 20px;
-  color: #f1356d;
-  margin-bottom: 8px;
-}
-.blog-preview a{
-  text-decoration: none;
+.heading h1 {
+  margin-left: auto;
+  font-size: 1.5rem;
+  color: #FF6347; /* Sets the color to blue */
 }
 
-/* blog details page */
-.blog-details h2 {
-  font-size: 20px;
-  color: #f1356d;
-  margin-bottom: 10px;
-}
-.blog-details div {
-  margin: 20px 0;
+.tagline h3{
+  color:#FF6347;
+  font-style: italic;
 }
 
-/* button to delete */
-.blog-details button {
-  background: #f1356d;
-  color: #fff;
-  border: 0;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
 }
 
-/* create new blog form */
-.create {
-  max-width: 400px;
-  margin: 0 auto;
+.card {
+  width: 300px;
+  height: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
+  background-color: #EFDEDB;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
-.create label {
-  text-align: left;
-  display: block;
-}
-.create h2 {
-  font-size: 20px;
-  color: #f1356d;
-  margin-bottom: 30px;
-}
-.create input, .create textarea, .create select {
-  width: 100%;
-  padding: 6px 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  box-sizing: border-box;
-  display: block;
-}
-.create button {
-  background: #f1356d;
-  color: #fff;
-  border: 0;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
