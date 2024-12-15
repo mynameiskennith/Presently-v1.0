@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Pie } from 'react-chartjs-2';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import "./Rating.css";
+import './Rating.css';
 
 // Register necessary chart components
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const RatingPage = () => {
   const [file, setFile] = useState(null);
-  const [score, setScore] = useState(null);
+  const [scores, setScores] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -41,7 +41,7 @@ const RatingPage = () => {
       }
 
       const result = await response.json();
-      setScore(result.score); // Assuming backend returns a JSON object with 'score' key
+      setScores(result); // Backend returns all scores
     } catch (err) {
       console.error(err);
       setError(err.message || "An error occurred while rating the presentation");
@@ -54,7 +54,7 @@ const RatingPage = () => {
     labels: ['Score', 'Remaining'],
     datasets: [
       {
-        data: [score || 0, 100 - (score || 0)],
+        data: [scores?.overall_rating || 0, 100 - (scores?.overall_rating || 0)],
         backgroundColor: ['#EF6C00', '#f3f3f3'],
         borderColor: ['#EF6C00', '#f3f3f3'],
         borderWidth: 2,
@@ -81,17 +81,7 @@ const RatingPage = () => {
 
   return (
     <div className="rating-page">
-      <h1 className="catchy-heading">
-        {"How good is your presentation?".split("").map((char, index) => (
-          <span
-            key={index}
-            className="letter"
-            style={{ "--delay": `${index * 0.1}s` }}
-          >
-            {char === " " ? "\u00A0" : char}
-          </span>
-        ))}
-      </h1>
+      <h1 className="catchy-heading">How good is your presentation?</h1>
       <p>Unleash the Power of Your Presentation: Get Your Score Now!</p>
       <div className="file-upload">
         <input
@@ -111,11 +101,21 @@ const RatingPage = () => {
 
       {error && <p className="error-message">{error}</p>}
 
-      {score !== null && !loading && (
+      {scores && !loading && (
         <div className="score-result">
-          <h2>Your Presentation Score: {score}</h2>
-          <Pie data={data} options={options} />
+        <h2>Your Presentation Score: {scores.overall_rating}</h2>
+
+        <div className="score-container">
+          <div className="left-half">
+            <Pie data={data} options={options} />
+          </div>
+          <div className="right-half">
+            <p>Slide Number Rating: {scores.slide_number_rating}</p>
+            <p>Bullet Point Rating: {scores.bullet_point_rating}</p>
+            <p>Total Slides: {scores.total_slides}</p>
+          </div>
         </div>
+      </div>
       )}
     </div>
   );

@@ -31,6 +31,7 @@ async def generate_presentation(request_data: dict):
         raise HTTPException(status_code=400, detail=str(e))
 
 
+
 @app.post("/rate-presentation/")
 async def rate_presentation(file: UploadFile):
     # Validating file type
