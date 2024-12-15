@@ -79,7 +79,7 @@ const GenerationPage = () => {
 
                         {/* Audience Type Dropdown */}
                         <div>
-                            <label htmlFor="audienceType">Audience Type:</label>
+                            <label htmlFor="audienceType">Presentation Type:</label>
                             <select
                                 id="audienceType"
                                 name="audienceType"
@@ -87,9 +87,9 @@ const GenerationPage = () => {
                                 onChange={handleChange}
                                 required
                             >
-                                <option value="">Select Audience Type</option>
+                                <option value="">Select Presentation Type</option>
                                 <option value="Business">Business</option>
-                                <option value="Education">Education</option>
+                                <option value="Educational">Educational</option>
                                 <option value="General">General</option>
                                 <option value="Technical">Technical</option>
                             </select>
@@ -97,7 +97,7 @@ const GenerationPage = () => {
 
                         {/* Number of Slides Input */}
                         <div>
-                            <label htmlFor="numberOfSlides">Number of Slides:</label>
+                            <label htmlFor="numberOfSlides">Number of Content Slides:</label>
                             <input
                                 type="number"
                                 id="numberOfSlides"

@@ -32,14 +32,16 @@ client = Groq(api_key=api_key)
 TITLE_FONT_SIZE = Pt(30)
 SLIDE_FONT_SIZE = Pt(16)
 
-def generate_slide_titles(topic,noOfSlides):
+def generate_slide_titles(topic,noOfSlides,audienceType,slideContent):
     prompt = f"""Generate exactly {noOfSlides} concise slide titles for a presentation on the topic: {topic}
     Rules:
     1. Provide only the titles, one per line
     2. Do not include any numbering or bullet points
     3. Each title should be brief and relevant to the topic
     4. Do not include any additional text in response  or explanations
-    6. Directly give the titles and do not add any additional message above it"""
+    6. Directly give the titles and do not add any additional message above it
+    7. The type of presentation is {audienceType} 
+    8. Give more importance to : {slideContent} when selecting topics """
     
     response = client.chat.completions.create(
         model="llama3-8b-8192",
@@ -63,7 +65,7 @@ def generate_slide_titles(topic,noOfSlides):
 
 
 
-def generate_slide_content(slide_title):
+def generate_slide_content(slide_title,audienceType):
     prompt = f"""Generate exactly 7 bullet points for the slide titled: "{slide_title}"
     Rules:
     1. Each point must be a very short but crisp sentence
@@ -73,7 +75,8 @@ def generate_slide_content(slide_title):
     5. Do not include any additional text from response or 
     6. Each point should be self explanatory
     7. Directly provide the points for the slide title and do not include any additional message before the points
-    8. Do not include the slide title in the points"""
+    8. Do not include the slide title in the points
+    9. The type of presentation is {audienceType} , select the tone of points accordingly"""
     
     response = client.chat.completions.create(
         model="llama3-8b-8192",
@@ -101,11 +104,11 @@ def generate_slide_content(slide_title):
 
 
 def create_presentation(request_data):
-    slide_titles = generate_slide_titles(request_data["topic"],request_data["numberOfSlides"])
+    slide_titles = generate_slide_titles(request_data["topic"],request_data["numberOfSlides"],request_data["audienceType"],request_data["slideContent"])
     slide_contents = []
     for title in slide_titles:
         print(f'Generating slide {title}')
-        slide_content = generate_slide_content(title)
+        slide_content = generate_slide_content(title,request_data["audienceType"])
         slide_contents.append(slide_content)
 
     prs = pptx.Presentation()
