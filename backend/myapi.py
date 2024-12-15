@@ -44,6 +44,7 @@ async def rate_presentation(file: UploadFile):
     try:
         # Read file contents
         contents = await file.read()
+        # print(contents)
         return pp.rate_ppt(contents)
     
     except Exception as e:
