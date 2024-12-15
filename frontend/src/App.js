@@ -5,6 +5,7 @@ import Navbar from './Navbar';
 import NotFound from './NotFound';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import TrainingPage from './TrainingPage';
+import GenerationPage from './GenerationPage';
 
 function App() {
   return (
