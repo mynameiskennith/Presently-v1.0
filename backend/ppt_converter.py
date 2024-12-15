@@ -32,8 +32,8 @@ client = Groq(api_key=api_key)
 TITLE_FONT_SIZE = Pt(30)
 SLIDE_FONT_SIZE = Pt(16)
 
-def generate_slide_titles(topic):
-    prompt = f"""Generate exactly 5 concise slide titles for a presentation on the topic: {topic}
+def generate_slide_titles(topic,noOfSlides):
+    prompt = f"""Generate exactly {noOfSlides} concise slide titles for a presentation on the topic: {topic}
     Rules:
     1. Provide only the titles, one per line
     2. Do not include any numbering or bullet points
@@ -58,7 +58,7 @@ def generate_slide_titles(topic):
     response_text = response.choices[0].message.content
 
     # Split the response into titles and filter out empty lines
-    return [title.strip() for title in response_text.split("\n") if title.strip()][:5] 
+    return [title.strip() for title in response_text.split("\n") if title.strip()][:7] 
 
 
 
@@ -66,10 +66,11 @@ def generate_slide_content(slide_title):
     prompt = f"""Generate exactly 6 bullet points for the slide titled: "{slide_title}"
     Rules:
     1. Each point must be a very short but crisp sentence
-    2. Do not exceed 10 words per point
+    2. Do not exceed 15 words per point
     3. Provide only the points, one per line
     4. Do not include any numbering or bullet point symbols
-    5. Do not include any additional text from response or explanations"""
+    5. Do not include any additional text from response or 
+    6. Each point should be self explanatory"""
     
     response = client.chat.completions.create(
         model="llama3-8b-8192",
@@ -97,7 +98,7 @@ def generate_slide_content(slide_title):
 
 
 def create_presentation(request_data):
-    slide_titles = generate_slide_titles(request_data["topic"])
+    slide_titles = generate_slide_titles(request_data["topic"],request_data["numberOfSlides"])
     slide_contents = []
     for title in slide_titles:
         print(f'Generating slide {title}')
