@@ -11,6 +11,7 @@
   align-items: center;
   max-width: auto;
   margin: 0 auto;
+  /* max-height: auto; */
   border-bottom: 1px solid #FFDBA1;
   background-color:  #FFF3E0;
 
@@ -51,6 +52,7 @@
 .body {
   margin: 0;
   padding: 0;
+  /* max-height: auto; */
   height: 90vh;
   font-family: 'Arial', sans-serif;
   background-color:  #FFF3E0;
