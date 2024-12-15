@@ -11,7 +11,7 @@ const LandingPage = () => {
         <div className="body">
             <div className="main-head">
                 <h1 className="animated-heading">
-                    {"Welcome to Presently!".split("").map((char, index) => (
+                    {"Welcome to Presently.".split("").map((char, index) => (
                         <span 
                             key={index} 
                             className="letter" 
