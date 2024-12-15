@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './index.css'; // Import the CSS file
 
 const GenerationPage = () => {
     const [formData, setFormData] = useState({
@@ -56,95 +57,88 @@ const GenerationPage = () => {
     };
 
     return (
-        <div className="heading">
-            <h1 className="title">Generation Page</h1>
-            <h3 className="tagline">AI generates slides instantly</h3>
+        <div className="mcontent">
+            <div className="mheading">
+                <h3 className="mtagline">Generates slides instantly</h3>
 
-            <div style={{ maxWidth: "600px", margin: "auto", padding: "20px", border: "1px solid #ccc", borderRadius: "10px" }}>
-                <h2>Generate Your Presentation</h2>
-                <form onSubmit={handleSubmit}>
-                    {/* Topic/Title Input */}
-                    <div style={{ marginBottom: "15px" }}>
-                        <label htmlFor="topic" style={{ display: "block", marginBottom: "5px" }}>Topic/Title for Presentation:</label>
-                        <input
-                            type="text"
-                            id="topic"
-                            name="topic"
-                            value={formData.topic}
-                            onChange={handleChange}
-                            required
-                            style={{ width: "100%", padding: "8px", borderRadius: "5px", border: "1px solid #ccc" }}
-                        />
-                    </div>
+                <div>
+                    <h2>Generate Your Presentation</h2>
+                    <form onSubmit={handleSubmit}>
+                        {/* Topic/Title Input */}
+                        <div>
+                            <label htmlFor="topic">Topic/Title for Presentation:</label>
+                            <input
+                                type="text"
+                                id="topic"
+                                name="topic"
+                                value={formData.topic}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
 
-                    {/* Audience Type Dropdown */}
-                    <div style={{ marginBottom: "15px" }}>
-                        <label htmlFor="audienceType" style={{ display: "block", marginBottom: "5px" }}>Audience Type:</label>
-                        <select
-                            id="audienceType"
-                            name="audienceType"
-                            value={formData.audienceType}
-                            onChange={handleChange}
-                            required
-                            style={{ width: "100%", padding: "8px", borderRadius: "5px", border: "1px solid #ccc" }}
-                        >
-                            <option value="">Select Audience Type</option>
-                            <option value="Business">Business</option>
-                            <option value="Education">Education</option>
-                            <option value="General">General</option>
-                            <option value="Technical">Technical</option>
-                        </select>
-                    </div>
+                        {/* Audience Type Dropdown */}
+                        <div>
+                            <label htmlFor="audienceType">Audience Type:</label>
+                            <select
+                                id="audienceType"
+                                name="audienceType"
+                                value={formData.audienceType}
+                                onChange={handleChange}
+                                required
+                            >
+                                <option value="">Select Audience Type</option>
+                                <option value="Business">Business</option>
+                                <option value="Education">Education</option>
+                                <option value="General">General</option>
+                                <option value="Technical">Technical</option>
+                            </select>
+                        </div>
 
-                    {/* Number of Slides Input */}
-                    <div style={{ marginBottom: "15px" }}>
-                        <label htmlFor="numberOfSlides" style={{ display: "block", marginBottom: "5px" }}>Number of Slides:</label>
-                        <input
-                            type="number"
-                            id="numberOfSlides"
-                            name="numberOfSlides"
-                            value={formData.numberOfSlides}
-                            onChange={handleChange}
-                            min="1"
-                            required
-                            style={{ width: "100%", padding: "8px", borderRadius: "5px", border: "1px solid #ccc" }}
-                        />
-                    </div>
+                        {/* Number of Slides Input */}
+                        <div>
+                            <label htmlFor="numberOfSlides">Number of Slides:</label>
+                            <input
+                                type="number"
+                                id="numberOfSlides"
+                                name="numberOfSlides"
+                                value={formData.numberOfSlides}
+                                onChange={handleChange}
+                                min="1"
+                                required
+                            />
+                        </div>
 
-                    {/* Slide Titles Input */}
-                    <div style={{ marginBottom: "15px" }}>
-                        <label htmlFor="slideTitles" style={{ display: "block", marginBottom: "5px" }}>Slide Titles (Optional):</label>
-                        <textarea
-                            id="slideTitles"
-                            name="slideTitles"
-                            value={formData.slideTitles}
-                            onChange={handleChange}
-                            placeholder="Enter slide titles, separated by commas"
-                            style={{ width: "100%", padding: "8px", borderRadius: "5px", border: "1px solid #ccc" }}
-                        ></textarea>
-                    </div>
+                        {/* Slide Titles Input */}
+                        <div>
+                            <label htmlFor="slideTitles">Slide Titles (Optional):</label>
+                            <textarea
+                                id="slideTitles"
+                                name="slideTitles"
+                                value={formData.slideTitles}
+                                onChange={handleChange}
+                                placeholder="Enter slide titles, separated by commas"
+                            ></textarea>
+                        </div>
 
-                    {/* Slide Content Input */}
-                    <div style={{ marginBottom: "15px" }}>
-                        <label htmlFor="slideContent" style={{ display: "block", marginBottom: "5px" }}>Slide Content (Optional):</label>
-                        <textarea
-                            id="slideContent"
-                            name="slideContent"
-                            value={formData.slideContent}
-                            onChange={handleChange}
-                            placeholder="Enter slide content, separated by commas"
-                            style={{ width: "100%", padding: "8px", borderRadius: "5px", border: "1px solid #ccc" }}
-                        ></textarea>
-                    </div>
+                        {/* Slide Content Input */}
+                        <div>
+                            <label htmlFor="slideContent">Slide Content (Optional):</label>
+                            <textarea
+                                id="slideContent"
+                                name="slideContent"
+                                value={formData.slideContent}
+                                onChange={handleChange}
+                                placeholder="Enter slide content, separated by commas"
+                            ></textarea>
+                        </div>
 
-                    {/* Submit Button */}
-                    <button
-                        type="submit"
-                        style={{ backgroundColor: "#007bff", color: "white", padding: "10px 15px", borderRadius: "5px", border: "none", cursor: "pointer" }}
-                    >
-                        Generate Presentation
-                    </button>
-                </form>
+                        {/* Submit Button */}
+                        <button type="submit">
+                            Generate Presentation
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     );

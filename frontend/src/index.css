@@ -193,7 +193,8 @@ button:hover {
   text-align: center;
   font-style: italic;
   font-size: xx-large;
-  margin-top: 80px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 span.mtagline-primary{
   color: black;
@@ -253,6 +254,148 @@ span.mtagline-secondary{
   color: #EF6C00;
   font-size: 35px;
   margin-top: 10px;
+}
+
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* GENERATION PAGE////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+.mcontent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.mheading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.mtitle {
+  font-size: 6.5rem;
+  color: black;
+}
+.form-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 15px solid #FFDBA1; /* Border for the container */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+}
+
+form {
+  border: 15px solid #FFDBA1; /* Border for the form itself */
+  border-radius: 10px;
+  padding: 20px; /* Optional: adjust padding if needed */
+}
+
+.form-container h2 {
+  text-align: center;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: black;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button[type="submit"] {
+  background-color: #EF6C00;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #FFDBA1;
+}
+
+
+.mtitle {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.mtagline {
+  font-size: 30px;
+  color: black;
+}
+
+form {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  border: 15px solid #FFDBA1;
+  border-radius: 10px;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.5rem;
+}
+
+input[type="text"],
+select,
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  
+}
+
+textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+button {
+  background-color: #EF6C00;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #d55f00;
 }
 
 
