@@ -4,12 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-fastapi = "*"
 uvicorn = "*"
 python-pptx = "*"
 groq = "*"
 numpy = "*"
 "spire.presentation" = "*"
+fastapi = {extras = ["all"], version = "*"}
 
 [dev-packages]
 
