@@ -20,6 +20,9 @@ function App() {
           <Route path="/select">
             <SelectionPage />
           </Route>
+          <Route path="/generate">
+            <GenerationPage />
+          </Route>
           <Route path="/training">
             <TrainingPage />
           </Route>
