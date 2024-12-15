@@ -6,7 +6,8 @@
   align-items: center;
   justify-content: center;
   padding: 50px;
-  height: 75vh;
+  /* height: 75vh; */
+  /* height: auto; */
 }
 
 .catchy-heading {
