@@ -5,6 +5,7 @@ import SelectionPage from './SelectionPage';
 import Navbar from './Navbar';
 import NotFound from './NotFound';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import GenerationPage from './GenerationPage';
 
 function App() {
   return (
@@ -18,6 +19,10 @@ function App() {
           </Route>
           <Route path="/select">
             <SelectionPage />
+          </Route>
+
+          <Route path="/generate">
+            <GenerationPage />
           </Route>
           {/* <Route path="/blogs/:id">
             <BlogDetails />
