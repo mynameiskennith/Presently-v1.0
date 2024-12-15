@@ -1,4 +1,5 @@
 # import streamlit as st
+from fastapi.responses import JSONResponse
 import pptx
 from pptx.util import Inches, Pt
 import os
@@ -95,26 +96,38 @@ def generate_slide_content(slide_title):
 
 
 
-def create_presentation(topic, slide_titles, slide_contents):
+def create_presentation(request_data):
+    slide_titles = generate_slide_titles(request_data["topic"])
+    slide_contents = []
+    for title in slide_titles:
+        print(f'Generating slide {title}')
+        slide_content = generate_slide_content(title)
+        slide_contents.append(slide_content)
+
     prs = pptx.Presentation()
     slide_layout = prs.slide_layouts[1]
 
     # Add the title slide
     title_slide = prs.slides.add_slide(prs.slide_layouts[0])
-    title_slide.shapes.title.text = topic
+    title_slide.shapes.title.text = request_data["topic"]
+    print("Added the title slide")
 
     # Add the "Contents" slide (second slide)
     contents_slide = prs.slides.add_slide(slide_layout)
     contents_slide.shapes.title.text = "Contents"
+    print("Added the contents title")
 
     # Add each slide title as bullet points on the Contents slide
     content_text = "\n\n".join(slide_titles)  # Join all slide titles into one text with line breaks
     contents_slide.shapes.placeholders[1].text = content_text
+    print("Added the contents")
+
 
     # Customize font size for the "Contents" slide
     contents_slide.shapes.title.text_frame.paragraphs[0].font.size = TITLE_FONT_SIZE
     for paragraph in contents_slide.shapes.placeholders[1].text_frame.paragraphs:
         paragraph.font.size = SLIDE_FONT_SIZE
+    print("Customized the font size")
 
     # Add the rest of the slides with their respective content
     for slide_title, slide_content in zip(slide_titles, slide_contents):
@@ -130,22 +143,31 @@ def create_presentation(topic, slide_titles, slide_contents):
                     paragraph.font.size = SLIDE_FONT_SIZE
 
         slide.shapes.title.text_frame.paragraphs[0].font.size = TITLE_FONT_SIZE
+        print("Created A Slide")
                     
                     
     thank_you_slide = prs.slides.add_slide(prs.slide_layouts[0])
     thank_you_slide.shapes.title.text = "Thank You"
+    print("Cretaed the Thank You")
 
+    # Save to an in-memory byte stream
+    ppt_stream = BytesIO()
+    prs.save(ppt_stream)
+    ppt_stream.seek(0)  # Reset stream position for reading
+    return ppt_stream
 
     # Save the presentation
-    os.makedirs('generated_ppt', exist_ok=True)
-    ppt_path = os.path.join('generated_ppt', f'{topic}_presentation.pptx')
-    prs.save(ppt_path)
-    return ppt_path
+    # os.makedirs('generated_ppt', exist_ok=True)
+    # ppt_path = os.path.join('generated_ppt', f'{request_data["topic"]}_presentation.pptx')
+    # print(f"////////////////////\n////////////////\n{ppt_path}")
+    # prs.save(ppt_path)
+    # return ppt_path
 
 
-def rate_ppt(ppt_file):
+
+def rate_ppt(ppt_file_contents):
     with tempfile.NamedTemporaryFile(delete=False, suffix='.pptx') as tmp_file:
-        tmp_file.write(ppt_file.getvalue())
+        tmp_file.write(ppt_file_contents)
         tmp_file_path = tmp_file.name
 
     try:
@@ -192,11 +214,15 @@ def rate_ppt(ppt_file):
             "bullet_point_rating": bullet_point_rating,
             "total_slides": total_slides
         }
+    
+    except Exception as error:
+    # handle the exception
+        return {"Error" : error}
 
     finally:
         # Clean up the temporary file
-        os.unlink(tmp_file_path)
-
+        if os.path.exists(tmp_file_path):
+            os.unlink(tmp_file_path)
 
 
 # Function to convert PPT to images
@@ -225,7 +251,7 @@ def convert_ppt_to_images(ppt_file):
                     images.append(img.copy().convert('RGB'))
 
         presentation.Dispose()
-        return images
+        return {"images":images}
 
     finally:
         # Clean up the temporary file
