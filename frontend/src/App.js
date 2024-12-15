@@ -5,6 +5,9 @@ import SelectionPage from './SelectionPage';
 import Navbar from './Navbar';
 import NotFound from './NotFound';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import LoginPage from './LoginPage';
+import SignUpPage from './SignUpPage';
+import RatingPage from './RatingPage';
 
 function App() {
   return (
@@ -22,7 +25,15 @@ function App() {
           {/* <Route path="/blogs/:id">
             <BlogDetails />
           </Route> */}
-
+          <Route path="/login">
+            <LoginPage />
+          </Route>
+          <Route path="/signup">
+            <SignUpPage />
+          </Route>
+          <Route path="/rating">
+            <RatingPage />
+          </Route>
           <Route path="*">
             <NotFound />
           </Route>
