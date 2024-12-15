@@ -38,7 +38,8 @@ def generate_slide_titles(topic,noOfSlides):
     1. Provide only the titles, one per line
     2. Do not include any numbering or bullet points
     3. Each title should be brief and relevant to the topic
-    4. Do not include any additional text in response  or explanations"""
+    4. Do not include any additional text in response  or explanations
+    6. Directly give the titles and do not add any additional message above it"""
     
     response = client.chat.completions.create(
         model="llama3-8b-8192",
@@ -58,19 +59,21 @@ def generate_slide_titles(topic,noOfSlides):
     response_text = response.choices[0].message.content
 
     # Split the response into titles and filter out empty lines
-    return [title.strip() for title in response_text.split("\n") if title.strip()][:7] 
+    return [title.strip() for title in response_text.split("\n") if title.strip()] 
 
 
 
 def generate_slide_content(slide_title):
-    prompt = f"""Generate exactly 6 bullet points for the slide titled: "{slide_title}"
+    prompt = f"""Generate exactly 7 bullet points for the slide titled: "{slide_title}"
     Rules:
     1. Each point must be a very short but crisp sentence
     2. Do not exceed 15 words per point
     3. Provide only the points, one per line
     4. Do not include any numbering or bullet point symbols
     5. Do not include any additional text from response or 
-    6. Each point should be self explanatory"""
+    6. Each point should be self explanatory
+    7. Directly provide the points for the slide title and do not include any additional message before the points
+    8. Do not include the slide title in the points"""
     
     response = client.chat.completions.create(
         model="llama3-8b-8192",
@@ -90,7 +93,7 @@ def generate_slide_content(slide_title):
     response_text = response.choices[0].message.content
 
     # Split the response into points and filter out empty lines
-    points = [point.strip() for point in response_text.split("\n") if point.strip()][:6]  # Ensure we get exactly 6 points
+    points = [point.strip() for point in response_text.split("\n") if point.strip()][1:7]  # Ensure we get exactly 6 points
     
     # Join the points with newlines to create the slide content
     return "\n\n".join(points)

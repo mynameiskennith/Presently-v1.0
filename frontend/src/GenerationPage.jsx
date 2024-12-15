@@ -22,7 +22,7 @@ const GenerationPage = () => {
             topic: formData.topic,
             audienceType: formData.audienceType,
             numberOfSlides: formData.numberOfSlides,
-            slideTitles: formData.slideTitles ? formData.slideTitles.split(',') : [],
+            // slideTitles: formData.slideTitles ? formData.slideTitles.split(',') : [],
             slideContent: formData.slideContent ? formData.slideContent.split(',') : [],
         };
 
@@ -110,7 +110,7 @@ const GenerationPage = () => {
                         </div>
 
                         {/* Slide Titles Input */}
-                        <div>
+                        {/* {<div>
                             <label htmlFor="slideTitles">Slide Titles (Optional):</label>
                             <textarea
                                 id="slideTitles"
@@ -119,11 +119,11 @@ const GenerationPage = () => {
                                 onChange={handleChange}
                                 placeholder="Enter slide titles, separated by commas"
                             ></textarea>
-                        </div>
+                        </div>} */}
 
                         {/* Slide Content Input */}
                         <div>
-                            <label htmlFor="slideContent">Slide Content (Optional):</label>
+                            <label htmlFor="slideContent">Detailed Prompt (Optional):</label>
                             <textarea
                                 id="slideContent"
                                 name="slideContent"
