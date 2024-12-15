@@ -57,8 +57,8 @@ const GenerationPage = () => {
 
     return (
         <div className="heading">
-            <h1 className="title">Generation Page</h1>
-            <h3 className="tagline">AI generates slides instantly</h3>
+            <h1 className="mtitle">Generation Page</h1>
+            <h3 className="mtagline">AI generates slides instantly</h3>
 
             <div style={{ maxWidth: "600px", margin: "auto", padding: "20px", border: "1px solid #ccc", borderRadius: "10px" }}>
                 <h2>Generate Your Presentation</h2>
