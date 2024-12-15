@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import LandingPage from './LandingPage';
 import SelectionPage from './SelectionPage';
@@ -8,6 +7,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginPage from './LoginPage';
 import SignUpPage from './SignUpPage';
 import RatingPage from './RatingPage';
+import TrainingPage from './TrainingPage';
+import GenerationPage from './GenerationPage';
 
 function App() {
   return (
@@ -22,6 +23,13 @@ function App() {
           <Route path="/select">
             <SelectionPage />
           </Route>
+          <Route path="/generate">
+            <GenerationPage />
+          </Route>
+          <Route path="/training">
+            <TrainingPage />
+          </Route>
+      
           {/* <Route path="/blogs/:id">
             <BlogDetails />
           </Route> */}
