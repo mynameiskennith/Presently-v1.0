@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import LandingPage from './LandingPage';
 import SelectionPage from './SelectionPage';
 import Navbar from './Navbar';
 import NotFound from './NotFound';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import TrainingPage from './TrainingPage';
 
 function App() {
   return (
@@ -18,6 +18,9 @@ function App() {
           </Route>
           <Route path="/select">
             <SelectionPage />
+          </Route>
+          <Route path="/training">
+            <TrainingPage />
           </Route>
           {/* <Route path="/blogs/:id">
             <BlogDetails />
