@@ -70,7 +70,7 @@ input[type="file"] {
 .score-container {
   display: flex;
   justify-content: space-between;
-  gap: 40px;
+  gap: 400px;
   width: 100%;
 }
 
@@ -93,13 +93,13 @@ input[type="file"] {
 
 
 .right-half p:first-child {
-  margin-top: 70px; /* Add space only above the first score */
+  margin-top: 80px; /* Add space only above the first score */
   
 }
 
 
 .right-half p {
-  margin: 10px 0; /* Reduced gap */
+  margin: 3px 0; /* Reduced gap */
   font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: bold;
