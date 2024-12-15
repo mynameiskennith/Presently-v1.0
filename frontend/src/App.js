@@ -23,10 +23,6 @@ function App() {
           <Route path="/training">
             <TrainingPage />
           </Route>
-          {/* <Route path="/blogs/:id">
-            <BlogDetails />
-          </Route> */}
-
           <Route path="*">
             <NotFound />
           </Route>
