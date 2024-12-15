@@ -1,70 +1,109 @@
+/* Base Styles */
 * {
   margin: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
+
+/* Navbar */
 .navbar {
   padding: 20px;
   display: flex;
   align-items: center;
   max-width: auto;
   margin: 0 auto;
-  border-bottom: 1px solid #f2f2f2;
-
+  flex: 1;
+  padding: 20px;
+  text-align: left;
+  margin-bottom: 20px;
+  background-color: white; /* Existing background color */
 }
+
 .navbar h1 {
-  color: #FF6347;
+  color: #ff6347;
   font-size: 2rem;
 }
+
 .navbar .links {
   margin-left: auto;
-  color: #FF6347 ;
+  color: #ff6347;
 }
 
+/* Page Container */
 .page-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 80vh;
   margin: 0;
+  background-color: #efdedb; /* Light background */
 }
 
+.content {
+  background-color: #efdedb;
+}
+/* Heading */
 .heading {
   flex: 1;
   padding: 20px;
-  text-align: left; /* Aligns the heading to the left */
+  text-align: left;
   margin-bottom: 20px;
+  background-color: #efdedb;
 }
 
+.tagline {
+  text-align: center;
+  color: #ff6347;
+  font-style: italic;
+  font-size: xx-large;
+  margin-top: 80px;
+}
 .heading h1 {
   margin-left: auto;
   font-size: 1.5rem;
-  color: #FF6347; /* Sets the color to blue */
+  color: #ff6347;
 }
-
-.tagline h3{
-  color:#FF6347;
-  font-style: italic;
-}
-
+/* Card Container */
 .card-container {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 80px;
 }
 
 .card {
   width: 300px;
   height: 300px;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #f4d8d1; /* Slightly darker border */
   border-radius: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #fe8d79; /* Light version of the background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  background-color: #EFDEDB;
   transition: transform 0.3s, box-shadow 0.3s;
+  margin-top: -200px;
+}
+
+.card p{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #efdedb;
+  margin-top: 80px;
+  font-size: 22px;
+}
+.card h3{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: #efdedb;
+  font-size: 35px;
+  margin-top: 30px;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+    height: auto;
+  }
 }
