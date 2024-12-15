@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 const LandingPage = () => {
 
     const handleButtonClick = () => {
-        window.location.href = "/login";
+        // window.location.href = "/login";
+        window.location.href = "/select";
+
       };
 
     return ( 
