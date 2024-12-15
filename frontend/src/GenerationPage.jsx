@@ -62,7 +62,7 @@ const GenerationPage = () => {
                 <h3 className="mtagline">Generates slides instantly</h3>
 
                 <div>
-                    <h2>Generate Your Presentation</h2>
+                    {/* <h2>Generate Your Presentation</h2> */}
                     <form onSubmit={handleSubmit}>
                         {/* Topic/Title Input */}
                         <div>
