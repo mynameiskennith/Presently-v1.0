@@ -272,7 +272,7 @@ def rate_ppt(ppt_file_contents):
         4. Consistency of slide formatting (score out of 10).
         5. Overall presentation content quality (score out of 10).
         6. Number of Slides (score out of 10).
-        7. Overall score. (score out of 10s)
+        7. Overall score. (score out of 10)
 
         Return a JSON object in this format:
         {{

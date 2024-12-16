@@ -344,14 +344,15 @@ const RatingPage = () => {
             <Bar data={barChartData} options={barChartOptions} />
           </div>
 
+          <p className='full-score'><strong>Overall Score:</strong> {scores.overAllScore}/10</p>
+
           <div className="details-container">
-            <p><strong>Number of Points:</strong> {scores.noOfPoints}</p>
-            <p><strong>Number of Images:</strong> {scores.noOfImages}</p>
-            <p><strong>Readability:</strong> {scores.Readability}</p>
-            <p><strong>Consistency:</strong> {scores.Consistency}</p>
-            <p><strong>Content Quality:</strong> {scores.Quality}</p>
+            <p><strong>Points Usage:</strong> {scores.noOfPoints}/10</p>
+            <p><strong>Use of Images:</strong> {scores.noOfImages}/10</p>
+            <p><strong>Text Readability:</strong> {scores.Readability}/10</p>
+            <p><strong>Font Consistency:</strong> {scores.Consistency}/10</p>
+            <p><strong>Content Quality:</strong> {scores.Quality}/10</p>
             <p><strong>Total Slides:</strong> {scores.noOfSlides}</p>
-            <p><strong>Overall Score:</strong> {scores.overAllScore}</p>
           </div>
         </div>
       )}
