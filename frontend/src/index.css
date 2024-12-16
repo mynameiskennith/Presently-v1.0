@@ -6,11 +6,12 @@
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
 .navbar {
-  padding: 20px;
+  padding: 10px;
   display: flex;
   align-items: center;
   max-width: auto;
   margin: 0 auto;
+  /* max-height: auto; */
   border-bottom: 1px solid #FFDBA1;
   background-color:  #FFF3E0;
 
@@ -51,6 +52,8 @@
 .body {
   margin: 0;
   padding: 0;
+  /* max-height: auto; */
+  height: 90vh;
   font-family: 'Arial', sans-serif;
   background-color:  #FFF3E0;
   line-height: 1.6;
@@ -200,7 +203,7 @@ body, html {
   text-align: center;
   font-style: italic;
   font-size: xx-large;
-  margin-top: 50px;
+  margin-top: 39px;
   margin-bottom: 50px;
 }
 span.mtagline-primary{
@@ -271,12 +274,15 @@ span.mtagline-secondary{
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
+  /* padding: 2rem; */
+  /* padding-top: 5px; */
+  padding: 0;
+  margin: 0;
 }
 
 .mheading {
   text-align: center;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .mtitle {

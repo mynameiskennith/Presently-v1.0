@@ -31,6 +31,7 @@ async def generate_presentation(request_data: dict):
         raise HTTPException(status_code=400, detail=str(e))
 
 
+
 @app.post("/rate-presentation/")
 async def rate_presentation(file: UploadFile):
     # Validating file type
@@ -43,6 +44,7 @@ async def rate_presentation(file: UploadFile):
     try:
         # Read file contents
         contents = await file.read()
+        # print(contents)
         return pp.rate_ppt(contents)
     
     except Exception as e:

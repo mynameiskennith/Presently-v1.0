@@ -22,7 +22,7 @@ const GenerationPage = () => {
             topic: formData.topic,
             audienceType: formData.audienceType,
             numberOfSlides: formData.numberOfSlides,
-            slideTitles: formData.slideTitles ? formData.slideTitles.split(',') : [],
+            // slideTitles: formData.slideTitles ? formData.slideTitles.split(',') : [],
             slideContent: formData.slideContent ? formData.slideContent.split(',') : [],
         };
 
@@ -62,7 +62,7 @@ const GenerationPage = () => {
                 <h3 className="mtagline">Generates slides instantly</h3>
 
                 <div>
-                    <h2>Generate Your Presentation</h2>
+                    {/* <h2>Generate Your Presentation</h2> */}
                     <form onSubmit={handleSubmit}>
                         {/* Topic/Title Input */}
                         <div>
@@ -79,7 +79,7 @@ const GenerationPage = () => {
 
                         {/* Audience Type Dropdown */}
                         <div>
-                            <label htmlFor="audienceType">Audience Type:</label>
+                            <label htmlFor="audienceType">Presentation Type:</label>
                             <select
                                 id="audienceType"
                                 name="audienceType"
@@ -87,9 +87,9 @@ const GenerationPage = () => {
                                 onChange={handleChange}
                                 required
                             >
-                                <option value="">Select Audience Type</option>
+                                <option value="">Select Presentation Type</option>
                                 <option value="Business">Business</option>
-                                <option value="Education">Education</option>
+                                <option value="Educational">Educational</option>
                                 <option value="General">General</option>
                                 <option value="Technical">Technical</option>
                             </select>
@@ -97,7 +97,7 @@ const GenerationPage = () => {
 
                         {/* Number of Slides Input */}
                         <div>
-                            <label htmlFor="numberOfSlides">Number of Slides:</label>
+                            <label htmlFor="numberOfSlides">Number of Content Slides:</label>
                             <input
                                 type="number"
                                 id="numberOfSlides"
@@ -110,7 +110,7 @@ const GenerationPage = () => {
                         </div>
 
                         {/* Slide Titles Input */}
-                        <div>
+                        {/* {<div>
                             <label htmlFor="slideTitles">Slide Titles (Optional):</label>
                             <textarea
                                 id="slideTitles"
@@ -119,11 +119,11 @@ const GenerationPage = () => {
                                 onChange={handleChange}
                                 placeholder="Enter slide titles, separated by commas"
                             ></textarea>
-                        </div>
+                        </div>} */}
 
                         {/* Slide Content Input */}
                         <div>
-                            <label htmlFor="slideContent">Slide Content (Optional):</label>
+                            <label htmlFor="slideContent">Detailed Prompt (Optional):</label>
                             <textarea
                                 id="slideContent"
                                 name="slideContent"

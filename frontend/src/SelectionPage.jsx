@@ -5,7 +5,7 @@ const SelectionPage = ()=>{
         <>
         <div className="mcontent">
         <div className="mheading">
-            <h1 className="mtitle">Selection Page</h1>
+           
             <h3 className="mtagline">
               <span className="mtagline-primary">Start Your Creative Journey With Presently</span>
               <br /><br /> <br />

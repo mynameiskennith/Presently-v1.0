@@ -4,14 +4,16 @@ import { Link } from 'react-router-dom';
 const LandingPage = () => {
 
     const handleButtonClick = () => {
-        window.location.href = "/login";
+        // window.location.href = "/login";
+        window.location.href = "/select";
+
       };
 
     return ( 
         <div className="body">
             <div className="main-head">
                 <h1 className="animated-heading">
-                    {"Welcome to Presently!".split("").map((char, index) => (
+                    {"Welcome to Presently.".split("").map((char, index) => (
                         <span 
                             key={index} 
                             className="letter" 
