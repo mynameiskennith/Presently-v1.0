@@ -1,30 +1,20 @@
 .rating-page {
   background-color: #FFF3E0;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 50px;
-  /* height: 75vh; */
-  /* height: auto; */
 }
 
 .catchy-heading {
-  min-height: 15vh;
   font-size: 4.5rem;
   color: #EF6C00;
-  font-weight: bolder;
+  font-weight: bold;
   margin-bottom: 20px;
-  display: inline-block;
 }
 
 p {
-  font-size: 2.9rem;
+  font-size: 2rem;
   font-weight: bold;
-  font-style: italic;
   color: black;
-  min-height: 13vh;
 }
 
 .file-upload {
@@ -41,7 +31,6 @@ input[type="file"] {
 .check-button {
   padding: 10px 20px;
   font-size: 25px;
-  font-family: "Quicksand";
   font-weight: 800;
   color: white;
   background-color: #EF6C00;
@@ -55,70 +44,112 @@ input[type="file"] {
 }
 
 .score-result {
-  margin-top: 50px;
+  margin-top: 10px;
+}
+
+.score-result h2{
+  font-size: 2.5rem;
+}
+
+.overall-score {
   font-size: 2rem;
   color: black;
-  font-family: "Quicksand";
-}
-
-.score-result h2 {
   font-weight: bold;
   margin-bottom: 30px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 3rem;
-  text-align: center; /* Centered */
 }
 
-.score-container {
-  display: flex;
-  justify-content: space-between;
-  gap: 400px;
-  width: 100%;
+.overall-score p{
+  font-size: 2.5rem;
 }
 
-.left-half, .right-half {
-  flex: 1;
+
+.suggession p{
+  font-size: 1.5rem;
+  color: black;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+/* .cards-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
   justify-content: center;
-  align-items: center;
+} */
+
+.cards-container {
+  display: flex;
+  flex-direction: column; /* Stack the cards vertically */
+  gap: 20px; /* Space between each card */
+  align-items: center; /* Center cards horizontally within the container */
 }
+
+
+/* .score-card {
+  display: block;
+  align-items: center;
+  background: #FFF;
+  border: 1px solid #DDD;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* width: 400px; */
+  /* padding: 20px;
+  text-align: left;
+  margin: 10px auto; /* Adds spacing and centers cards 
+  width: 80%; /* Optional: Adjust the width as needed */
+
+  .score-card {
+    display: flex; /* Use flexbox to align children horizontally */
+    align-items: center; /* Vertically center align the content */
+    background: #FFF;
+    border: 1px solid #DDD;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px auto;
+    width: 55%;
+    text-align: left; /* Ensure text aligns properly in the description */
+  }
+  
+
+/* .left-half {
+  position: relative;
+  width: 40%;
+} */
+
 
 .left-half {
-  text-align: center; /* Center the chart */
+  position: relative;
+  width: 100px; /* Fixed width */
+  height: 100px; /* Fixed height, same as width for a circle */
+  border-radius: 50%; /* Makes it circular */
+  /*background-color: #FFDBA1; /* Example background for visualization */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.score-result canvas {
-  max-width: 350px;
-  max-height: 350px;
-}
-
-
-.right-half p:first-child {
-  margin-top: 80px; /* Add space only above the first score */
+.score-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  font-weight: bold;
   
 }
 
+.right-half {
+  padding-left: 40px;
+}
+
+.right-half h3 {
+  font-size: 1.5rem;
+  color: #EF6C00;
+  margin-bottom: 10px;
+}
 
 .right-half p {
-  margin: 3px 0; /* Reduced gap */
-  font-family: Arial, Helvetica, sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 2rem;
-}
-
-.full-score{
-  font-size: 50px;
-}
-
-.chart-container{
-  display: flex;
-  justify-content: center;
-}
-
-.details-container > p {
-  font-size: 25px;
-  padding-bottom: 0;
-  min-height: 1vh;
+  font-size: 1.5rem;
+  color: #555;
 }
