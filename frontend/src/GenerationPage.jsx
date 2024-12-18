@@ -131,12 +131,18 @@ const GenerationPage = () => {
                     </form>
                 </div>
             ) : (
-                <div id="generatedbox" className="flex flex-col items-center justify-center mt-10 p-24 shadow-lg rounded-lg mt-28">
+                <div id="generatedbox" className="flex flex-col items-center justify-center mt-10 p-10 shadow-lg rounded-lg mt-20"
+                style={{
+                    border: '8px solid white', 
+                    borderImage: 'linear-gradient(to right, #ec4899, #a855f7, #6366f1) 1', 
+                    borderImageSlice: 1,
+                    padding: '20px',  // Add padding to ensure content does not overlap the border
+                  }}>
                     <h1 className="font-GeistSans text-3xl font-bold text-gray-800 mb-6">Here is your generated Presentation</h1>
                     <div className="flex flex-col items-center mb-6">
                         <img src="./ppticon.png" alt="Presentation Icon" className="w-28 mb-6" />
                         <h3 className="text-xl font-bold text-gray-700">Your Presentation is Ready</h3>
-                    </div>
+                </div>
                     <button
                         onClick={() => {
                             const link = document.createElement('a');
@@ -144,13 +150,13 @@ const GenerationPage = () => {
                             link.download = `${formData.topic}_presentation.pptx`;
                             link.click();
                         }}
-                        className="w-full bg-black text-white py-3 px-4 mt-6 rounded-lg shadow-md hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 transition duration-300 font-bold"
+                        className="w-[300px] bg-black text-white py-3 px-3 mt-5 rounded-lg shadow-md hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 transition duration-300 font-bold"
                     >
                         Download
                     </button>
                     <button
                         onClick={() => setGenrationForm(true)} // Set to true to go back to the form
-                        className="w-full bg-black text-white py-3 px-4 mt-6 rounded-lg shadow-md hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 transition duration-300 font-bold"
+                        className="w-[300px] bg-black text-white py-3 px-3 mt-5 rounded-lg shadow-md hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 transition duration-300 font-bold"
                     >
                         Generate New Presentation
                     </button>

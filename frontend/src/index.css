@@ -22,6 +22,8 @@ body {
 }
 #generatedbox{
   background-color: #f6f6fd;
+  max-width: 448px; /* Set a maximum width */
+  width: 100%; 
 }
 
 

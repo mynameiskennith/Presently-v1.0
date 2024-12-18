@@ -70,12 +70,7 @@ input[type="file"] {
   margin-bottom: 30px;
 }
 
-/* .cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-} */
+
 
 .cards-container {
   display: flex;
@@ -85,18 +80,7 @@ input[type="file"] {
 }
 
 
-/* .score-card {
-  display: block;
-  align-items: center;
-  background: #FFF;
-  border: 1px solid #DDD;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  /* width: 400px; */
-  /* padding: 20px;
-  text-align: left;
-  margin: 10px auto; /* Adds spacing and centers cards 
-  width: 80%; /* Optional: Adjust the width as needed */
+
 
   .score-card {
     display: flex; /* Use flexbox to align children horizontally */
@@ -111,12 +95,6 @@ input[type="file"] {
     text-align: left; /* Ensure text aligns properly in the description */
   }
   
-
-/* .left-half {
-  position: relative;
-  width: 40%;
-} */
-
 
 .left-half {
   position: relative;
