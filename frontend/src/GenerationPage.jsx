@@ -125,8 +125,6 @@ const GenerationPage = () => {
                             type="submit"
                             disabled={isGenerating}
                             className="w-full bg-black text-white py-3 px-6 rounded-lg shadow-md hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 transition duration-300 font-bold"
-
-
                         >
                             Generate Presentation
                         </button>
@@ -149,6 +147,12 @@ const GenerationPage = () => {
                         className="w-full bg-black text-white py-3 px-4 mt-6 rounded-lg shadow-md hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 transition duration-300 font-bold"
                     >
                         Download
+                    </button>
+                    <button
+                        onClick={() => setGenrationForm(true)} // Set to true to go back to the form
+                        className="w-full bg-black text-white py-3 px-4 mt-6 rounded-lg shadow-md hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 transition duration-300 font-bold"
+                    >
+                        Generate New Presentation
                     </button>
                 </div>
             )}
