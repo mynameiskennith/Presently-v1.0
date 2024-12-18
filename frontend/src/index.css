@@ -452,8 +452,8 @@ button:hover {
 
 /* Icon Container */
 .icon-container {
-  margin-top: 15%;
-  padding: 8%;
+  margin-top: 3rem;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   gap:2.5rem;
