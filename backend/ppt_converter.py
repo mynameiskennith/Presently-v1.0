@@ -168,8 +168,9 @@ def create_presentation(request_data):
     ppt_stream.seek(0)  # Reset stream position for reading
     return ppt_stream
 
+###########################################################################################################
 
-
+# Function to extract all text from the PPT
 def extract_text_from_ppt(ppt_file_contents):
     """Extract all text from the PPT for processing."""
     presentation = Presentation(BytesIO(ppt_file_contents))
@@ -182,6 +183,18 @@ def extract_text_from_ppt(ppt_file_contents):
         all_text.append("\n".join(slide_text))
     return "\n\n".join(all_text)
 
+# Function to count the number of images in the PPT
+def count_images_in_ppt(ppt_file_contents):
+    """Count the number of images in the PPT."""
+    presentation = Presentation(BytesIO(ppt_file_contents))
+    total_images = 0
+    for slide in presentation.slides:
+        for shape in slide.shapes:
+            if shape.shape_type == 13:  # Shape type 13 corresponds to Picture
+                total_images += 1
+    return total_images
+
+# Main function to rate the PPT
 def rate_ppt(ppt_file_contents):
     """Evaluate a PPT file using the Groq model."""
     with tempfile.NamedTemporaryFile(delete=False, suffix=".pptx") as tmp_file:
@@ -189,14 +202,16 @@ def rate_ppt(ppt_file_contents):
         tmp_file_path = tmp_file.name
 
     try:
-        # Extract text from the PPT for the prompt
+        # Extract text and count images in the PPT
         ppt_text = extract_text_from_ppt(ppt_file_contents)
+        num_images = count_images_in_ppt(ppt_file_contents)
 
         # Prepare the prompt for the Groq model
         prompt = f"""
         You are an AI assistant tasked with evaluating PowerPoint presentations.
         
         PPT content: {ppt_text}
+        Number of images: {num_images}
         
         Analyze the provided presentation based on these detailed criteria of a professional presentation:
         
@@ -206,7 +221,8 @@ def rate_ppt(ppt_file_contents):
             - Score out of 100: Full points if all slides adhere, deductions for excess.
         
         2. **Number of images per slide**:
-            - Find 
+            - Number of Images = {num_images}.
+            - Score = ( Number of Images/ Number of Slides ) * 100
             - Score out of 100: Full points for the ideal range, deductions for too few or too many images.
         
         3. **Readability of text content**:
@@ -230,7 +246,7 @@ def rate_ppt(ppt_file_contents):
             - Score out of 100.
         
         7. **Overall score**:
-            - A average based on all criteria above.
+            - An average based on all criteria above.
             - Score out of 100.
 
         Return a JSON object in this format:
@@ -271,12 +287,7 @@ def rate_ppt(ppt_file_contents):
         # Pass the prompt to the Groq model
         response = client.chat.completions.create(
             model="llama3-8b-8192",
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ],
+            messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
             max_tokens=1024,
             top_p=1,
@@ -300,6 +311,139 @@ def rate_ppt(ppt_file_contents):
         if os.path.exists(tmp_file_path):
             os.unlink(tmp_file_path)
 
+
+# def extract_text_from_ppt(ppt_file_contents):
+#     """Extract all text from the PPT for processing."""
+#     presentation = Presentation(BytesIO(ppt_file_contents))
+#     all_text = []
+#     for slide in presentation.slides:
+#         slide_text = []
+#         for shape in slide.shapes:
+#             if shape.has_text_frame:
+#                 slide_text.append(shape.text)
+#         all_text.append("\n".join(slide_text))
+#     return "\n\n".join(all_text)
+
+# def rate_ppt(ppt_file_contents):
+#     """Evaluate a PPT file using the Groq model."""
+#     with tempfile.NamedTemporaryFile(delete=False, suffix=".pptx") as tmp_file:
+#         tmp_file.write(ppt_file_contents)
+#         tmp_file_path = tmp_file.name
+
+#     try:
+#         # Extract text from the PPT for the prompt
+#         ppt_text = extract_text_from_ppt(ppt_file_contents)
+
+#         # Prepare the prompt for the Groq model
+#         prompt = f"""
+#         You are an AI assistant tasked with evaluating PowerPoint presentations.
+        
+#         PPT content: {ppt_text}
+        
+#         Analyze the provided presentation based on these detailed criteria of a professional presentation:
+        
+#         1. **Number of points per slide**: 
+#             - Evaluate based on the 7/7, 8/8, or 6/6 rule (no more than 6-8 words per line and 6-8 lines per slide).
+#             - Deduct points if a slide exceeds these limits.
+#             - Score out of 100: Full points if all slides adhere, deductions for excess.
+        
+#         2. **Number of images per slide**:
+#             - Find 
+#             - Score out of 100: Full points for the ideal range, deductions for too few or too many images.
+        
+#         3. **Readability of text content**:
+#             - Use the SMOG Readability Formula to assess readability (based on syllables and sentence complexity).
+#             - Full points for readability suited for the target audience (e.g., 6th-9th-grade level for general audiences).
+#             - Score out of 100.
+        
+#         4. **Consistency of slide formatting**:
+#             - Check for uniformity in font styles, font sizes, color schemes, and alignment.
+#             - Deduct points for inconsistent elements across slides.
+#             - Score out of 100.
+        
+#         5. **Overall presentation content quality**:
+#             - Assess the presentation's organization, logical flow, and coverage of the topic.
+#             - Deduct points for missing key information or lack of structure.
+#             - Score out of 100.
+        
+#         6. **Number of slides**:
+#             - Check if the total number of slides is appropriate for the presentation's purpose (e.g., 8-12 slides for a 10-minute talk).
+#             - Deduct points for excessive or insufficient slides.
+#             - Score out of 100.
+        
+#         7. **Overall score**:
+#             - A average based on all criteria above.
+#             - Score out of 100.
+
+#         Return a JSON object in this format:
+#         {{
+#             "noOfPoints": {{
+#                 "score": <score out of 100>,
+#                 "reason": "Brief reason for the score and how we computed the score"
+#             }},
+#             "noOfImages": {{
+#                 "score": <score out of 100>,
+#                 "reason": "Brief reason for the score and how we computed the score."
+#             }},
+#             "readability": {{
+#                 "score": <score out of 100>,
+#                 "reason": "Brief reason for the score and how we computed the score"
+#             }},
+#             "consistency": {{
+#                 "score": <score out of 100>,
+#                 "reason": "Brief reason for the score and how we computed the score"
+#             }},
+#             "quality": {{
+#                 "score": <score out of 100>,
+#                 "reason": "Brief reason for the score and how we computed the score"
+#             }},
+#             "noOfSlides": {{
+#                 "score": <score out of 100>,
+#                 "reason": "Brief reason for the score and how we computed the score"
+#             }},
+#             "overallScore": {{
+#                 "score": <score out of 100>,
+#                 "reason": "Brief reason for the score and how we computed the score"
+#             }}
+#         }}
+
+#         Only return the JSON object with no additional text.
+#         """
+
+#         # Pass the prompt to the Groq model
+#         response = client.chat.completions.create(
+#             model="llama3-8b-8192",
+#             messages=[
+#                 {
+#                     "role": "user",
+#                     "content": prompt
+#                 }
+#             ],
+#             temperature=0.7,
+#             max_tokens=1024,
+#             top_p=1,
+#             stream=False,
+#         )
+
+#         # Extract and parse the response
+#         evaluation_results = response.choices[0].message.content.strip()
+#         try:
+#             evaluation_results = json.loads(evaluation_results)
+#         except json.JSONDecodeError:
+#             raise ValueError("Invalid JSON response from Groq API")
+
+#         return evaluation_results
+
+#     except Exception as error:
+#         print(traceback.format_exc())  # Log detailed error
+#         return {"Error": str(error)}
+
+#     finally:
+#         if os.path.exists(tmp_file_path):
+#             os.unlink(tmp_file_path)
+
+
+####################################################################################################################
     # Save the presentation
     # os.makedirs('generated_ppt', exist_ok=True)
     # ppt_path = os.path.join('generated_ppt', f'{request_data["topic"]}_presentation.pptx')
