@@ -25,7 +25,7 @@ app.add_middleware(
 async def generate_presentation(request_data: dict):
     try:
         ppt_stream = pp.create_presentation(request_data)
-        headers = {"Content-Disposition": f"attachment; filename={request_data["topic"]}_presentation.pptx"}
+        headers = {"Content-Disposition": f"attachment; filename={request_data['topic']}_presentation.pptx"}
         return StreamingResponse(ppt_stream, media_type="application/vnd.openxmlformats-officedocument.presentationml.presentation", headers=headers)
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
