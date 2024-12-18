@@ -1,3 +1,152 @@
+import React, { useState } from 'react';
+import { Bar } from 'react-chartjs-2';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import './Rating.css';
+
+// Register necessary chart components
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+
+const RatingPage = () => {
+  const [file, setFile] = useState(null);
+  const [scores, setScores] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleFileChange = (event) => {
+    setFile(event.target.files[0]);
+  };
+
+  const handleCheckButtonClick = async () => {
+    if (!file) {
+      alert('Please upload a presentation first!');
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    // Prepare form data for API call
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch("http://localhost:8000/rate-presentation/", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || "Failed to rate presentation");
+      }
+
+      const result = await response.json();
+      setScores(result); // Backend returns all scores and reasons
+    } catch (err) {
+      console.error(err);
+      setError(err.message || "An error occurred while rating the presentation");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const barChartData = scores && {
+    labels: [
+      'Points per Slide',
+      'Use of Images',
+      'Readability',
+      'Consistency',
+      'Content Quality',
+      'Slide Count Score',
+      'Overall Score',
+    ],
+    datasets: [
+      {
+        label: 'Presentation Ratings',
+        data: [
+          scores.noOfPoints.score,
+          scores.noOfImages.score,
+          scores.readability.score,
+          scores.consistency.score,
+          scores.quality.score,
+          scores.noOfSlides.score,
+          scores.overallScore.score,
+        ],
+        backgroundColor: [
+          '#EF6C00', '#FFCA28', '#66BB6A', '#42A5F5', '#AB47BC', '#8D6E63', '#29B6F6'
+        ],
+        borderColor: [
+          '#EF6C00', '#FFCA28', '#66BB6A', '#42A5F5', '#AB47BC', '#8D6E63', '#29B6F6'
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const barChartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Presentation Rating Metrics',
+      },
+    },
+  };
+
+  return (
+    <div className="rating-page">
+      <h1 className="catchy-heading">How good is your presentation?</h1>
+      <p>Unleash the Power of Your Presentation: Get Your Score Now!</p>
+      <div className="file-upload">
+        <input
+          type="file"
+          accept=".pptx"
+          onChange={handleFileChange}
+          id="fileInput"
+        />
+      </div>
+      <button
+        onClick={handleCheckButtonClick}
+        className="check-button"
+        disabled={loading}
+      >
+        {loading ? "Checking..." : "Check"}
+      </button>
+
+      {error && <p className="error-message">{error}</p>}
+
+      {scores && !loading && (
+        <div className="score-result">
+          <h2>Your Presentation Ratings</h2>
+
+          <div className="chart-container">
+            <Bar data={barChartData} options={barChartOptions} />
+          </div>
+
+          <p className="full-score">
+            <strong>Overall Score:</strong> {scores.overallScore.score}/100 - {scores.overallScore.reason}
+          </p>
+
+          <div className="details-container">
+            <p><strong>Points Usage:</strong> {scores.noOfPoints.score}/100 - {scores.noOfPoints.reason}</p>
+            <p><strong>Use of Images:</strong> {scores.noOfImages.score}/100 - {scores.noOfImages.reason}</p>
+            <p><strong>Text Readability:</strong> {scores.readability.score}/100 - {scores.readability.reason}</p>
+            <p><strong>Font Consistency:</strong> {scores.consistency.score}/100 - {scores.consistency.reason}</p>
+            <p><strong>Content Quality:</strong> {scores.quality.score}/100 - {scores.quality.reason}</p>
+            <p><strong>Slide Count Score:</strong> {scores.noOfSlides.score}/100 - {scores.noOfSlides.reason}</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default RatingPage;
+
+
 // import React, { useState } from 'react';
 // import { Pie } from 'react-chartjs-2';
 // import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
@@ -362,151 +511,4 @@
 
 // export default RatingPage;
 
-import React, { useState } from 'react';
-import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-import './Rating.css';
-
-// Register necessary chart components
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-
-const RatingPage = () => {
-  const [file, setFile] = useState(null);
-  const [scores, setScores] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const handleFileChange = (event) => {
-    setFile(event.target.files[0]);
-  };
-
-  const handleCheckButtonClick = async () => {
-    if (!file) {
-      alert('Please upload a presentation first!');
-      return;
-    }
-
-    setLoading(true);
-    setError(null);
-
-    // Prepare form data for API call
-    const formData = new FormData();
-    formData.append("file", file);
-
-    try {
-      const response = await fetch("http://localhost:8000/rate-presentation/", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.detail || "Failed to rate presentation");
-      }
-
-      const result = await response.json();
-      setScores(result); // Backend returns all scores and reasons
-    } catch (err) {
-      console.error(err);
-      setError(err.message || "An error occurred while rating the presentation");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const barChartData = scores && {
-    labels: [
-      'Points per Slide',
-      'Use of Images',
-      'Readability',
-      'Consistency',
-      'Content Quality',
-      'Slide Count Score',
-      'Overall Score',
-    ],
-    datasets: [
-      {
-        label: 'Presentation Ratings',
-        data: [
-          scores.noOfPoints.score,
-          scores.noOfImages.score,
-          scores.readability.score,
-          scores.consistency.score,
-          scores.quality.score,
-          scores.noOfSlides.score,
-          scores.overallScore.score,
-        ],
-        backgroundColor: [
-          '#EF6C00', '#FFCA28', '#66BB6A', '#42A5F5', '#AB47BC', '#8D6E63', '#29B6F6'
-        ],
-        borderColor: [
-          '#EF6C00', '#FFCA28', '#66BB6A', '#42A5F5', '#AB47BC', '#8D6E63', '#29B6F6'
-        ],
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  const barChartOptions = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Presentation Rating Metrics',
-      },
-    },
-  };
-
-  return (
-    <div className="rating-page">
-      <h1 className="catchy-heading">How good is your presentation?</h1>
-      <p>Unleash the Power of Your Presentation: Get Your Score Now!</p>
-      <div className="file-upload">
-        <input
-          type="file"
-          accept=".pptx"
-          onChange={handleFileChange}
-          id="fileInput"
-        />
-      </div>
-      <button
-        onClick={handleCheckButtonClick}
-        className="check-button"
-        disabled={loading}
-      >
-        {loading ? "Checking..." : "Check"}
-      </button>
-
-      {error && <p className="error-message">{error}</p>}
-
-      {scores && !loading && (
-        <div className="score-result">
-          <h2>Your Presentation Ratings</h2>
-
-          <div className="chart-container">
-            <Bar data={barChartData} options={barChartOptions} />
-          </div>
-
-          <p className="full-score">
-            <strong>Overall Score:</strong> {scores.overallScore.score}/100 - {scores.overallScore.reason}
-          </p>
-
-          <div className="details-container">
-            <p><strong>Points Usage:</strong> {scores.noOfPoints.score}/100 - {scores.noOfPoints.reason}</p>
-            <p><strong>Use of Images:</strong> {scores.noOfImages.score}/100 - {scores.noOfImages.reason}</p>
-            <p><strong>Text Readability:</strong> {scores.readability.score}/100 - {scores.readability.reason}</p>
-            <p><strong>Font Consistency:</strong> {scores.consistency.score}/100 - {scores.consistency.reason}</p>
-            <p><strong>Content Quality:</strong> {scores.quality.score}/100 - {scores.quality.reason}</p>
-            <p><strong>Slide Count Score:</strong> {scores.noOfSlides.score}/100 - {scores.noOfSlides.reason}</p>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default RatingPage;
 
