@@ -282,6 +282,7 @@ def rate_ppt(ppt_file_contents):
         }}
 
         Only return the JSON object with no additional text.
+        Strictly Follow this retrun Format
         """
 
         # Pass the prompt to the Groq model
