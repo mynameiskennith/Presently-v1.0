@@ -59,12 +59,12 @@ const GenerationPage = () => {
         <div className={`flex flex-col items-center ${isGenerating ? "bg-gray-900" : ""} p-5 min-h-screen `}>
             {isGenerating && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
-                    <h2 className="text-4xl text-white font-bold">Generating...</h2>
+                    <h2 className="text-3xl text-white font-bold">Generating...</h2>
                 </div>
             )}
 
             {isGenerationForm ? (
-                <div id="generateform" className="w-full max-w-2xl p-8 shadow-lg rounded-lg border-8 border-transparent bg-clip-padding mt-24" 
+                <div id="generateform" className="w-full max-w-lg p-5 shadow-lg rounded-lg border-8 border-transparent bg-clip-padding mt-24" 
                 style={{ borderImage: 'linear-gradient(to right, #ec4899, #a855f7, #6366f1) 1', borderImageSlice: 1 }}>
                     <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">Generates Slides Instantly</h3>
                     <form onSubmit={handleSubmit} className="space-y-6">

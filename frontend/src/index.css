@@ -38,7 +38,7 @@ body {
   }
 }
 
-.animated-heading .letter {
+.letter {
   display: inline-block;
   opacity: 0;
   transform: translateX(-20px);
@@ -48,7 +48,7 @@ body {
 
 
 
-button {
+/* button {
   padding: 10px 20px;
   font-size: 25px;
   font-family: "Quicksand";
@@ -62,111 +62,13 @@ button {
 
 button:hover {
   background-color: black;
-}
+} */
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* SELECTION PAGE////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 
-body, html {
-  height: 100%;
-  margin: 0;
-  background-color: #FFF3E0;
-}
 
-.mpage-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-  margin: 0;
-  background-color: #FFF3E0;
-}
-
-.mcontent{
-  background-color: #FFF3E0;
-}
-
-.mheading {
-  flex: 1;
-  padding: 20px;
-  text-align: left; /* Aligns the heading to the left */
-  margin-bottom: 20px;
-  color: black;
-}
-
-.mheading h1 {
-  margin-left: auto;
-  font-size: 1.5rem;
-  color: #EF6C00; /* Sets the color to blue */
-}
-
-.mtagline{
-  text-align: center;
-  font-style: italic;
-  font-size: xx-large;
-  margin-top: 39px;
-  margin-bottom: 50px;
-}
-span.mtagline-primary{
-  color: black;
-  font-size: 50px;
-}
-span.mtagline-secondary{
-  color: #EF6C00;
-  margin-top: 200px;
-}
-.mtagline-end {
-  font-style: italic; /* Optional: Makes it look like a quotation */
-  position: relative;
-  text-align: center;
-  margin-top: -130px;
-  font-size: 40px;
-  font-weight: bold;
-}
-
-.mcard-container {
-  display: flex;
-  justify-content: center;
-  gap: 80px;
-
-}
-.mpage-container a{
-  text-decoration: none;
-}
-
-.mcard {
-  width: 300px;
-  height: 300px;
-  padding: 20px;
-  border: 15px solid #FFDBA1; /* Adjust the border thickness if needed */
-  border-radius: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  background-color: white;
-  transition: transform 0.3s, box-shadow 0.3s;
-  margin-top: -150px;
-  
-}
-
-.mcard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-.mcard p{
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  color: black;
-  font-size: 22px;
-  margin-top: 80px; /* Adjust the value as needed for desired gap */
-  
-}
-.mcard h3{
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  color: #EF6C00;
-  font-size: 35px;
-  margin-top: 10px;
-}
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* GENERATION PAGE////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
