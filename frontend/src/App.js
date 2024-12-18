@@ -20,10 +20,10 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === '/select') {
-      // Hide Navbar on the Selection page
+    if (['/select'].includes(location.pathname)) {
+      // Hide Navbar on the Selection, Login, and Signup pages
       setNavState({ isVisible: false, isHero: false });
-    } else if (location.pathname === '/') {
+    } else if (['/', '/login', '/signup'].includes(location.pathname)){
       // On Landing page, show Navbar with "SignUp" and "Login" links
       setNavState({ isVisible: true, isHero: false });
     } else {
