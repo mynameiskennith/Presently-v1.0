@@ -205,6 +205,8 @@ def rate_ppt(ppt_file_contents):
         # Extract text and count images in the PPT
         ppt_text = extract_text_from_ppt(ppt_file_contents)
         num_images = count_images_in_ppt(ppt_file_contents)
+        print("///////////////////////////////////////////////////////////////////////////////////")
+        print(ppt_text)
 
         # Prepare the prompt for the Groq model
         prompt = f"""
@@ -290,7 +292,7 @@ def rate_ppt(ppt_file_contents):
             model="llama3-8b-8192",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
-            max_tokens=1024,
+            max_tokens=2048,
             top_p=1,
             stream=False,
         )
