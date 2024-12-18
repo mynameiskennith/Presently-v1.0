@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     return ( 
-        <nav className="navbar bg-black p-4 flex items-center max-w-full mx-auto border-b border-white font-Quicksand">
+        <nav className="navbar p-4 flex items-center max-w-full mx-auto border-b border-white font-Quicksand">
             <Link to="/">
                 <h1 className="text-white text-3xl font-extrabold">Presently.</h1>
             </Link>

@@ -9,7 +9,7 @@ const LandingPage = () => {
     };
 
     return ( 
-        <div className="bg-black text-white h-[90vh] flex items-center justify-center">
+        <div className=" text-white h-[90vh] flex items-center justify-center">
             <div className="flex flex-col items-center justify-center min-h-[75vh] text-center">
                 <h1 className="text-8xl font-extrabold text-center text-white mb-4">
                     {"Welcome to Presently.".split("").map((char, index) => (

@@ -56,7 +56,7 @@ const GenerationPage = () => {
     };
 
     return (
-        <div className={`flex flex-col items-center ${isGenerating ? "bg-gray-900" : ""} p-5 min-h-screen bg-black`}>
+        <div className={`flex flex-col items-center ${isGenerating ? "bg-gray-900" : ""} p-5 min-h-screen `}>
             {isGenerating && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
                     <h2 className="text-4xl text-white font-bold">Generating...</h2>
