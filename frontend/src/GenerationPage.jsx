@@ -1,6 +1,6 @@
 import { useState } from "react";
 import './index.css'; // Import the CSS file
-import { FaDownload, FaFile } from "react-icons/fa"; // Import icons from react-icons
+// import { FaDownload, FaFile } from "react-icons/fa"; // Import icons from react-icons
 
 const GenerationPage = () => {
     const [formData, setFormData] = useState({
