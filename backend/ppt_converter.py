@@ -237,31 +237,31 @@ def rate_ppt(ppt_file_contents):
         {{
             "noOfPoints": {{
                 "score": <score out of 100>,
-                "reason": "Brief reason for the score."
+                "reason": "Brief reason for the score and how we computed the score"
             }},
             "noOfImages": {{
                 "score": <score out of 100>,
-                "reason": "Brief reason for the score."
+                "reason": "Brief reason for the score and how we computed the score."
             }},
             "readability": {{
                 "score": <score out of 100>,
-                "reason": "Brief reason for the score."
+                "reason": "Brief reason for the score and how we computed the score"
             }},
             "consistency": {{
                 "score": <score out of 100>,
-                "reason": "Brief reason for the score."
+                "reason": "Brief reason for the score and how we computed the score"
             }},
             "quality": {{
                 "score": <score out of 100>,
-                "reason": "Brief reason for the score."
+                "reason": "Brief reason for the score and how we computed the score"
             }},
             "noOfSlides": {{
                 "score": <score out of 100>,
-                "reason": "Brief reason for the score."
+                "reason": "Brief reason for the score and how we computed the score"
             }},
             "overallScore": {{
                 "score": <score out of 100>,
-                "reason": "Brief reason for the score."
+                "reason": "Brief reason for the score and how we computed the score"
             }}
         }}
 
