@@ -20,21 +20,21 @@ const SelectionPage = () => {
         {/* Cards Section */}
         <div className="flex justify-center gap-20 mt-12">
           <Link to="/generate">
-          <div className="w-64 h-64 p-4 border-4 border-transparent rounded-lg shadow-lg transition-transform transform hover:translate-y-1 hover:shadow-xl" style={{ backgroundColor: '#f6f6fd', borderImage: 'linear-gradient(to right, #ec4899, #a855f7, #6366f1) 1', borderImageSlice: 1 }}>
-            <h3 className="text-3xl mb-4 font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">Presentation Generation</h3>
-            <p className="font-serif text-lg italic mt-4">Create slides from basic prompts, making presentation design easy.</p>
-          </div>
+        <div className="w-64 h-64 p-4 border-4 border-transparent rounded-lg shadow-lg transition-transform transform hover:translate-y-1 hover:shadow-xl" style={{ backgroundColor: '#f6f6fd', borderImage: 'linear-gradient(to right, #ec4899, #a855f7, #6366f1) 1', borderImageSlice: 1 }}>
+          <h3 className="text-3xl mb-8 font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">Presentation Generation</h3>
+          <p className="font-serif text-black font-medium italic mt-8">Create slides from basic prompts, making presentation design easy.</p>
+        </div>
           </Link>
           <Link to="/rating">
           <div className="w-64 h-64 p-4 border-4 border-transparent rounded-lg shadow-lg transition-transform transform hover:translate-y-1 hover:shadow-xl" style={{ backgroundColor: '#f6f6fd', borderImage: 'linear-gradient(to right, #ec4899, #a855f7, #6366f1) 1', borderImageSlice: 1 }}>
-            <h3 className="text-3xl mb-4 font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">Presentation Rating</h3>
-            <p className="font-serif text-lg italic mt-4">Get feedback on your slides to improve clarity and impact.</p>
+            <h3 className="text-3xl mb-8 font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">Presentation Rating</h3>
+            <p className="font-serif text-black font-medium italic mt-8">Get feedback on your slides to improve clarity and impact.</p>
           </div>
           </Link>
           <Link to="/training">
           <div className="w-64 h-64 p-4 border-4 border-transparent rounded-lg shadow-lg transition-transform transform hover:translate-y-1 hover:shadow-xl" style={{ backgroundColor: '#f6f6fd', borderImage: 'linear-gradient(to right, #ec4899, #a855f7, #6366f1) 1', borderImageSlice: 1 }}>
-            <h3 className="text-3xl mb-4 font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">Presentation Training</h3>
-            <p className="font-serif text-lg italic mt-4">Practice your delivery with tips to boost confidence.</p>
+            <h3 className="text-3xl mb-8 font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent">Presentation Training</h3>
+            <p className="font-serif text-black font-medium italic mt-8">Practice your delivery with tips to boost confidence.</p>
           </div>
           </Link>
         </div>

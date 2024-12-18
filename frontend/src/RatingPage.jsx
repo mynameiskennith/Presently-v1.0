@@ -120,7 +120,7 @@ const RatingPage = () => {
   return (
     <div className="text-white min-h-screen flex flex-col items-center py-10">
       {loading && !error && !scores && (
-        <div className="text-center">
+        <div className="text-center text-xl md:text-3xl font-bold mb-20">
           <p>Analyzing your presentation... Please wait.</p>
         </div>
       )}
