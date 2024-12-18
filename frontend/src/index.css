@@ -164,6 +164,18 @@ button:hover {
   background-color: black;
 }
 
+.download-button{
+  padding: 10px 20px;
+  font-size: 25px;
+  font-family: "Quicksand";
+  font-weight: 800;
+  color: white;
+  background-color: #EF6C00;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* SELECTION PAGE////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -411,6 +423,85 @@ button {
 
 button:hover {
   background-color: #000000;
+}
+
+
+/* Fade background */
+.fade-background {
+  position: relative;
+  opacity: 2.0;
+  pointer-events: none; /* Prevent interactions with background */
+}
+
+/* Loading overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Ensure overlay is on top */
+  color: white;
+  font-size: 3rem; /* Increased font size */
+  font-weight: bold;
+}
+
+/* Icon Container */
+.icon-container {
+  margin-top: 15%;
+  padding: 8%;
+  display: flex;
+  flex-direction: column;
+  gap:2.5rem;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 20px;
+}
+
+/* File Icon */
+.file-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #444;
+  cursor: default;
+  
+}
+
+.file-icon img{
+  width: 45%;
+}
+.file-icon span {
+  margin-top: 5px;
+  font-size: 1rem;
+  color: #666;
+  
+}
+
+/* Download Icon */
+.download-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #444;
+}
+
+.download-icon:hover {
+  color: #007bff; /* Change color on hover */
+}
+
+.download-icon span {
+  margin-top: 5px;
+  font-size: 1rem;
+  color: #666;
 }
 
 
