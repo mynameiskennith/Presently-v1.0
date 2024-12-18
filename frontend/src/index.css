@@ -1,141 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
 /* base styles */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
 * {
   margin: 0;
-  font-family: "Patua One", serif;
-}
-.navbar {
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  max-width: auto;
-  margin: 0 auto;
-  /* max-height: auto; */
-  border-bottom: 1px solid #FFDBA1;
-  background-color:  #FFF3E0;
-
-}
-.navbar h1 {
-  color:black;
-  font-size: 2.5rem;
-  font-weight: bolder;
-}
-.navbar .links {
-  margin-left: auto;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: black;
-
-}
-.navbar a {
-  margin-left: 16px;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 6px;
-  color: black;
-}
-.navbar a:hover {
-  color: #EF6C00;
-}
-.navbar a:active{
-  color: #EF6C00;
-
+  font-family: Quicksand;
 }
 
-.content {
-  max-width: auto;
-  margin: auto;
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)),
+              url(../public/DesktopBG.png) no-repeat center center;
+  background-size: cover; /* Adjust to fit the screen */
 }
+
+#generateform {
+  background-color: #f6f6fd;
+}
+#generatedbox{
+  background-color: #f6f6fd;
+}
+
 
 /* Landing Page */
-.body {
-  margin: 0;
-  padding: 0;
-  /* max-height: auto; */
-  height: 90vh;
-  /* font-family: 'Arial', sans-serif; */
-  background-color:  #FFF3E0;
-  line-height: 1.6;
-}
-
-/* Main Container */
-.main-head {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 75vh;
-  text-align: center;
-  /*background: linear-gradient(135deg,#f0841e#FAC898); */
-  
-}
-
-/* Main Heading */
-.main-head h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color:black;
-}
-
-/* Subheading */
-.sub-head h2 {
-  font-size: 2rem;
-  font-style: italic;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  color: black; 
-}
-
-/* Description */
-.description {
-  max-width: 1300px;
-  padding: 20px;
-  background-color:  #FFF3E0;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-.description h3 {
-  font-size: 1.75rem;
-  font-weight: bold;
-  margin: 0;
-  color: #EF6C00;
-  line-height: 1.8;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .main-head h1 {
-      font-size: 2.5rem;
-  }
-
-  .sub-head h2 {
-      font-size: 1.8rem;
-  }
-
-  .description h3 {
-      font-size: 1.1rem;
-  }
-}
-
-/* Base styles for the heading */
-.animated-heading {
-  display: inline-block;
-}
-
-/* Style for individual letters */
-.animated-heading .letter {
-  display: inline-block;
-  opacity: 0;
-  transform: translateX(-20px);
-  animation: slideIn 0.5s forwards;
-  animation-delay: var(--delay);
-}
-
-/* Keyframes for the animation */
+/* Tailwind CSS Custom Animation */
 @keyframes slideIn {
   0% {
       opacity: 0;
@@ -146,6 +37,16 @@
       transform: translateX(0);
   }
 }
+
+.animated-heading .letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideIn 0.5s forwards;
+  animation-delay: var(--delay);
+}
+
+
 
 button {
   padding: 10px 20px;
@@ -161,18 +62,6 @@ button {
 
 button:hover {
   background-color: black;
-}
-
-.download-button{
-  padding: 10px 20px;
-  font-size: 25px;
-  font-family: "Quicksand";
-  font-weight: 800;
-  color: white;
-  background-color: #EF6C00;
-  border: none;
-  border-radius: 1rem;
-  cursor: pointer;
 }
 
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -282,228 +171,4 @@ span.mtagline-secondary{
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* GENERATION PAGE////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
 /* ////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
-
-.mcontent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* padding: 2rem; */
-  /* padding-top: 5px; */
-  padding: 0;
-  margin: 0;
-}
-
-.mheading {
-  text-align: center;
-  /* margin-bottom: 20px; */
-}
-
-.mtitle {
-  font-size: 6.5rem;
-  color: black;
-}
-.form-container {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  border: 15px solid #FFDBA1; /* Border for the container */
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
-}
-
-form {
-  border: 15px solid #FFDBA1; /* Border for the form itself */
-  border-radius: 10px;
-  padding: 20px; /* Optional: adjust padding if needed */
-}
-
-.form-container h2 {
-  text-align: center;
-  color: black;
-  margin-bottom: 20px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: black;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-textarea {
-  resize: vertical;
-}
-
-button[type="submit"] {
-  background-color: #EF6C00;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  font-weight: bold;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
-
-button[type="submit"]:hover {
-  background-color: black;
-}
-
-
-.mtitle {
-  font-size: 36px;
-  font-weight: bold;
-}
-
-.mtagline {
-  font-size: 30px;
-  color: black;
-}
-
-form {
-  max-width: 600px;
-  margin: auto;
-  padding: 20px;
-  border: 15px solid #FFDBA1;
-  border-radius: 10px;
-}
-
-h2 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 1.5rem;
-}
-
-input[type="text"],
-select,
-input[type="number"],
-textarea {
-  width: 100%;
-  padding: 8px;
-  border-radius: 5px;
-  
-}
-
-textarea {
-  resize: vertical;
-  height: 100px;
-}
-
-button {
-  background-color: #EF6C00;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 5px;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #000000;
-}
-
-
-/* Fade background */
-.fade-background {
-  position: relative;
-  opacity: 2.0;
-  pointer-events: none; /* Prevent interactions with background */
-}
-
-/* Loading overlay */
-.loading-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999; /* Ensure overlay is on top */
-  color: white;
-  font-size: 3rem; /* Increased font size */
-  font-weight: bold;
-}
-
-/* Icon Container */
-.icon-container {
-  margin-top: 15%;
-  padding: 8%;
-  display: flex;
-  flex-direction: column;
-  gap:2.5rem;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  border-radius: 20px;
-}
-
-/* File Icon */
-.file-icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #444;
-  cursor: default;
-  
-}
-
-.file-icon img{
-  width: 45%;
-}
-.file-icon span {
-  margin-top: 5px;
-  font-size: 1rem;
-  color: #666;
-  
-}
-
-/* Download Icon */
-.download-icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: #444;
-}
-
-.download-icon:hover {
-  color: #007bff; /* Change color on hover */
-}
-
-.download-icon span {
-  margin-top: 5px;
-  font-size: 1rem;
-  color: #666;
-}
-
-
-
-
 

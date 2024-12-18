@@ -168,6 +168,138 @@ def create_presentation(request_data):
     ppt_stream.seek(0)  # Reset stream position for reading
     return ppt_stream
 
+
+
+def extract_text_from_ppt(ppt_file_contents):
+    """Extract all text from the PPT for processing."""
+    presentation = Presentation(BytesIO(ppt_file_contents))
+    all_text = []
+    for slide in presentation.slides:
+        slide_text = []
+        for shape in slide.shapes:
+            if shape.has_text_frame:
+                slide_text.append(shape.text)
+        all_text.append("\n".join(slide_text))
+    return "\n\n".join(all_text)
+
+def rate_ppt(ppt_file_contents):
+    """Evaluate a PPT file using the Groq model."""
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".pptx") as tmp_file:
+        tmp_file.write(ppt_file_contents)
+        tmp_file_path = tmp_file.name
+
+    try:
+        # Extract text from the PPT for the prompt
+        ppt_text = extract_text_from_ppt(ppt_file_contents)
+
+        # Prepare the prompt for the Groq model
+        prompt = f"""
+        You are an AI assistant tasked with evaluating PowerPoint presentations.
+        
+        PPT content: {ppt_text}
+        
+        Analyze the provided presentation based on these detailed criteria of a professional presentation:
+        
+        1. **Number of points per slide**: 
+            - Evaluate based on the 7/7, 8/8, or 6/6 rule (no more than 6-8 words per line and 6-8 lines per slide).
+            - Deduct points if a slide exceeds these limits.
+            - Score out of 100: Full points if all slides adhere, deductions for excess.
+        
+        2. **Number of images per slide**:
+            - Find 
+            - Score out of 100: Full points for the ideal range, deductions for too few or too many images.
+        
+        3. **Readability of text content**:
+            - Use the SMOG Readability Formula to assess readability (based on syllables and sentence complexity).
+            - Full points for readability suited for the target audience (e.g., 6th-9th-grade level for general audiences).
+            - Score out of 100.
+        
+        4. **Consistency of slide formatting**:
+            - Check for uniformity in font styles, font sizes, color schemes, and alignment.
+            - Deduct points for inconsistent elements across slides.
+            - Score out of 100.
+        
+        5. **Overall presentation content quality**:
+            - Assess the presentation's organization, logical flow, and coverage of the topic.
+            - Deduct points for missing key information or lack of structure.
+            - Score out of 100.
+        
+        6. **Number of slides**:
+            - Check if the total number of slides is appropriate for the presentation's purpose (e.g., 8-12 slides for a 10-minute talk).
+            - Deduct points for excessive or insufficient slides.
+            - Score out of 100.
+        
+        7. **Overall score**:
+            - A average based on all criteria above.
+            - Score out of 100.
+
+        Return a JSON object in this format:
+        {{
+            "noOfPoints": {{
+                "score": <score out of 100>,
+                "reason": "Brief reason for the score."
+            }},
+            "noOfImages": {{
+                "score": <score out of 100>,
+                "reason": "Brief reason for the score."
+            }},
+            "readability": {{
+                "score": <score out of 100>,
+                "reason": "Brief reason for the score."
+            }},
+            "consistency": {{
+                "score": <score out of 100>,
+                "reason": "Brief reason for the score."
+            }},
+            "quality": {{
+                "score": <score out of 100>,
+                "reason": "Brief reason for the score."
+            }},
+            "noOfSlides": {{
+                "score": <score out of 100>,
+                "reason": "Brief reason for the score."
+            }},
+            "overallScore": {{
+                "score": <score out of 100>,
+                "reason": "Brief reason for the score."
+            }}
+        }}
+
+        Only return the JSON object with no additional text.
+        """
+
+        # Pass the prompt to the Groq model
+        response = client.chat.completions.create(
+            model="llama3-8b-8192",
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            temperature=0.7,
+            max_tokens=1024,
+            top_p=1,
+            stream=False,
+        )
+
+        # Extract and parse the response
+        evaluation_results = response.choices[0].message.content.strip()
+        try:
+            evaluation_results = json.loads(evaluation_results)
+        except json.JSONDecodeError:
+            raise ValueError("Invalid JSON response from Groq API")
+
+        return evaluation_results
+
+    except Exception as error:
+        print(traceback.format_exc())  # Log detailed error
+        return {"Error": str(error)}
+
+    finally:
+        if os.path.exists(tmp_file_path):
+            os.unlink(tmp_file_path)
+
     # Save the presentation
     # os.makedirs('generated_ppt', exist_ok=True)
     # ppt_path = os.path.join('generated_ppt', f'{request_data["topic"]}_presentation.pptx')
@@ -236,18 +368,6 @@ def create_presentation(request_data):
 #         if os.path.exists(tmp_file_path):
 #             os.unlink(tmp_file_path)
 
-
-def extract_text_from_ppt(ppt_file_contents):
-    """Extract all text from the PPT for processing."""
-    presentation = Presentation(BytesIO(ppt_file_contents))
-    all_text = []
-    for slide in presentation.slides:
-        slide_text = []
-        for shape in slide.shapes:
-            if shape.has_text_frame:
-                slide_text.append(shape.text)
-        all_text.append("\n".join(slide_text))
-    return "\n\n".join(all_text)
 
 # def rate_ppt(ppt_file_contents):
 #     """Evaluate a PPT file using the Groq model."""
@@ -326,161 +446,38 @@ def extract_text_from_ppt(ppt_file_contents):
 
 ####################################################################################################################################333
 #######################################################################################################################################
-
-def rate_ppt(ppt_file_contents):
-    """Evaluate a PPT file using the Groq model."""
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".pptx") as tmp_file:
-        tmp_file.write(ppt_file_contents)
-        tmp_file_path = tmp_file.name
-
-    try:
-        # Extract text from the PPT for the prompt
-        ppt_text = extract_text_from_ppt(ppt_file_contents)
-
-        # Prepare the prompt for the Groq model
-        prompt = f"""
-        You are an AI assistant tasked with evaluating PowerPoint presentations.
-        
-        PPT content: {ppt_text}
-        
-        Analyze the provided presentation based on these detailed criteria of a professional presentation:
-        
-        1. **Number of points per slide**: 
-            - Evaluate based on the 7/7, 8/8, or 6/6 rule (no more than 6-8 words per line and 6-8 lines per slide).
-            - Deduct points if a slide exceeds these limits.
-            - Score out of 100: Full points if all slides adhere, deductions for excess.
-        
-        2. **Number of images per slide**:
-            - Calculate the average number of images per slide (total images ÷ total slides).
-            - Ideal: 1-2 images per slide for clarity and visual appeal.
-            - Score out of 100: Full points for the ideal range, deductions for too few or too many images.
-        
-        3. **Readability of text content**:
-            - Use the SMOG Readability Formula to assess readability (based on syllables and sentence complexity).
-            - Full points for readability suited for the target audience (e.g., 6th-9th-grade level for general audiences).
-            - Score out of 100.
-        
-        4. **Consistency of slide formatting**:
-            - Check for uniformity in font styles, font sizes, color schemes, and alignment.
-            - Deduct points for inconsistent elements across slides.
-            - Score out of 100.
-        
-        5. **Overall presentation content quality**:
-            - Assess the presentation's organization, logical flow, and coverage of the topic.
-            - Deduct points for missing key information or lack of structure.
-            - Score out of 100.
-        
-        6. **Number of slides**:
-            - Check if the total number of slides is appropriate for the presentation's purpose (e.g., 8-12 slides for a 10-minute talk).
-            - Deduct points for excessive or insufficient slides.
-            - Score out of 100.
-        
-        7. **Overall score**:
-            - A average based on all criteria above.
-            - Score out of 100.
-
-        Return a JSON object in this format:
-        {{
-            "noOfPoints": {{
-                "score": <score out of 100>,
-                "reason": "Brief reason for the score."
-            }},
-            "noOfImages": {{
-                "score": <score out of 100>,
-                "reason": "Brief reason for the score."
-            }},
-            "readability": {{
-                "score": <score out of 100>,
-                "reason": "Brief reason for the score."
-            }},
-            "consistency": {{
-                "score": <score out of 10>,
-                "reason": "Brief reason for the score."
-            }},
-            "quality": {{
-                "score": <score out of 10>,
-                "reason": "Brief reason for the score."
-            }},
-            "noOfSlides": {{
-                "score": <score out of 10>,
-                "reason": "Brief reason for the score."
-            }},
-            "overallScore": {{
-                "score": <score out of 10>,
-                "reason": "Brief reason for the score."
-            }}
-        }}
-
-        Only return the JSON object with no additional text.
-        """
-
-        # Pass the prompt to the Groq model
-        response = client.chat.completions.create(
-            model="llama3-8b-8192",
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ],
-            temperature=0.7,
-            max_tokens=1024,
-            top_p=1,
-            stream=False,
-        )
-
-        # Extract and parse the response
-        evaluation_results = response.choices[0].message.content.strip()
-        try:
-            evaluation_results = json.loads(evaluation_results)
-        except json.JSONDecodeError:
-            raise ValueError("Invalid JSON response from Groq API")
-
-        return evaluation_results
-
-    except Exception as error:
-        print(traceback.format_exc())  # Log detailed error
-        return {"Error": str(error)}
-
-    finally:
-        if os.path.exists(tmp_file_path):
-            os.unlink(tmp_file_path)
-
-
-
-
 # Function to convert PPT to images
-def convert_ppt_to_images(ppt_file):
-    # Save the uploaded file to a temporary file
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".pptx") as tmp_ppt_file:
-        tmp_ppt_file.write(ppt_file.getvalue())  # Write the content of the uploaded file
-        tmp_ppt_file_path = tmp_ppt_file.name    # Get the file path
+# def convert_ppt_to_images(ppt_file):
+#     # Save the uploaded file to a temporary file
+#     with tempfile.NamedTemporaryFile(delete=False, suffix=".pptx") as tmp_ppt_file:
+#         tmp_ppt_file.write(ppt_file.getvalue())  # Write the content of the uploaded file
+#         tmp_ppt_file_path = tmp_ppt_file.name    # Get the file path
 
-    try:
-        # Load the presentation from the saved file
-        presentation = Presentation()
-        presentation.LoadFromFile(tmp_ppt_file_path)
+#     try:
+#         # Load the presentation from the saved file
+#         presentation = Presentation()
+#         presentation.LoadFromFile(tmp_ppt_file_path)
 
-        images = []
-        with tempfile.TemporaryDirectory() as tmpdirname:
-            for i, slide in enumerate(presentation.Slides):
-                fileName = f"slide_{i}.png"
-                image = slide.SaveAsImageByWH(800, 450)
-                file_path = os.path.join(tmpdirname, fileName)
-                image.Save(file_path)
-                image.Dispose()
+#         images = []
+#         with tempfile.TemporaryDirectory() as tmpdirname:
+#             for i, slide in enumerate(presentation.Slides):
+#                 fileName = f"slide_{i}.png"
+#                 image = slide.SaveAsImageByWH(800, 450)
+#                 file_path = os.path.join(tmpdirname, fileName)
+#                 image.Save(file_path)
+#                 image.Dispose()
 
-                # Open the image, convert it to RGB (to ensure compatibility), and store it in memory
-                with Imagee.open(file_path) as img:
-                    images.append(img.copy().convert('RGB'))
+#                 # Open the image, convert it to RGB (to ensure compatibility), and store it in memory
+#                 with Imagee.open(file_path) as img:
+#                     images.append(img.copy().convert('RGB'))
 
-        presentation.Dispose()
-        return {"images":images}
+#         presentation.Dispose()
+#         return {"images":images}
 
-    finally:
-        # Clean up the temporary file
-        if os.path.exists(tmp_ppt_file_path):
-            os.remove(tmp_ppt_file_path)
+#     finally:
+#         # Clean up the temporary file
+#         if os.path.exists(tmp_ppt_file_path):
+#             os.remove(tmp_ppt_file_path)
 
 
 
