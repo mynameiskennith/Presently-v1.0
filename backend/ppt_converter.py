@@ -49,7 +49,7 @@ def generate_slide_titles(topic,noOfSlides,audienceType,slideContent):
     8. Give more importance to : {slideContent} when selecting topics """
     
     response = client.chat.completions.create(
-        model="llama3-8b-8192",
+        model="llama3-groq-70b-8192-tool-use-preview",
         messages=[
             {
                 "role": "user",
@@ -84,7 +84,7 @@ def generate_slide_content(slide_title,audienceType):
     9. The type of presentation is {audienceType} , select the tone of points accordingly"""
     
     response = client.chat.completions.create(
-        model="llama3-8b-8192",
+        model="llama3-groq-70b-8192-tool-use-preview",
         messages=[
             {
                 "role": "user",
@@ -255,31 +255,31 @@ def rate_ppt(ppt_file_contents):
         {{
             "noOfPoints": {{
                 "score": <score out of 100>,
-                "reason": "Brief reason for the score and how we computed the score"
+                "reason": "Detail reason for the score and how we computed the score"
             }},
             "noOfImages": {{
                 "score": <score out of 100>,
-                "reason": "Brief reason for the score and how we computed the score."
+                "reason": "Detail reason for the score and how we computed the score."
             }},
             "readability": {{
                 "score": <score out of 100>,
-                "reason": "Brief reason for the score and how we computed the score"
+                "reason": "Detail reason for the score and how we computed the score"
             }},
             "consistency": {{
                 "score": <score out of 100>,
-                "reason": "Brief reason for the score and how we computed the score"
+                "reason": "Detail reason for the score and how we computed the score"
             }},
             "quality": {{
                 "score": <score out of 100>,
-                "reason": "Brief reason for the score and how we computed the score"
+                "reason": "Detail reason for the score and how we computed the score"
             }},
             "noOfSlides": {{
                 "score": <score out of 100>,
-                "reason": "Brief reason for the score and how we computed the score"
+                "reason": "Detail reason for the score and how we computed the score"
             }},
             "overallScore": {{
                 "score": <score out of 100>,
-                "reason": "Brief reason for the score and how we computed the score"
+                "reason": "Detail reason for the score and how we computed the score"
             }}
         }}
 
@@ -289,7 +289,7 @@ def rate_ppt(ppt_file_contents):
 
         # Pass the prompt to the Groq model
         response = client.chat.completions.create(
-            model="llama3-8b-8192",
+            model="llama3-groq-70b-8192-tool-use-preview",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
             max_tokens=2048,
