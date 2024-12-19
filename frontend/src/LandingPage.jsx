@@ -33,7 +33,7 @@ const LandingPage = () => {
                     <div className="mt-6">
                         <button 
                             onClick={handleButtonClick} 
-                            className="bg-white text-black py-2 px-6 rounded-full text-xl font-semibold hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500">
+                            className="bg-white text-black py-2 px-6 rounded-full text-xl font-semibold hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 hover:text-white">
                             Get Started
                         </button> 
                     </div>
