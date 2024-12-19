@@ -69,7 +69,7 @@ const RatingPage = () => {
   const [scores, setScores] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [analysisCompleted, setAnalysisCompleted] = useState(false);
+  // const [analysisCompleted, setAnalysisCompleted] = useState(false);
   const [showAnalysis, setShowAnalysis] = useState(false); // To control the display of analysis
 
   const handleFileChange = (event) => {
@@ -84,7 +84,7 @@ const RatingPage = () => {
 
     setLoading(true);
     setError(null);
-    setAnalysisCompleted(false);
+    // setAnalysisCompleted(false);
 
     const formData = new FormData();
     formData.append("file", file);
@@ -134,18 +134,8 @@ const RatingPage = () => {
           <p className="text-xl md:text-3xl font-bold mb-20">
             Unleash the Power of Your Presentation: Get Your Score Now!
           </p>
-          {/* <div className="relative p-1 rounded-lg bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 mb-6">
-            <div className="rounded-lg bg-white">
-              <input
-                type="file"
-                accept=".pptx"
-                onChange={handleFileChange}
-                className="px-4 py-2 text-black w-full rounded-lg"
-              />
-            </div>
-          </div> */}
           <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4 hover:border-blue-500 cursor-pointer" onClick={() => document.getElementById("file-input").click()}>
-              <img src="/ppticon.png" alt="PPT Icon" className="w-16" />
+              <img src="/pptVector.png" alt="PPT Icon" className="w-20" />
             <div className="flex items-center space-x-2">
               <h3 className="text-lg font-semibold text-white">Upload your PPT</h3>
             </div>
