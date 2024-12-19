@@ -11,6 +11,7 @@ import {
   Legend,
 } from "chart.js";
 
+
 // Register necessary chart components
 ChartJS.register(
   CategoryScale,
@@ -133,16 +134,30 @@ const RatingPage = () => {
           <p className="text-xl md:text-3xl font-bold mb-20">
             Unleash the Power of Your Presentation: Get Your Score Now!
           </p>
-              <div className="relative p-1 rounded-lg bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 mb-6">
-          <div className="rounded-lg bg-white">
+          {/* <div className="relative p-1 rounded-lg bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 mb-6">
+            <div className="rounded-lg bg-white">
+              <input
+                type="file"
+                accept=".pptx"
+                onChange={handleFileChange}
+                className="px-4 py-2 text-black w-full rounded-lg"
+              />
+            </div>
+          </div> */}
+          <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-4 hover:border-blue-500 cursor-pointer" onClick={() => document.getElementById("file-input").click()}>
+              <img src="/ppticon.png" alt="PPT Icon" className="w-16" />
+            <div className="flex items-center space-x-2">
+              <h3 className="text-lg font-semibold text-white">Upload your PPT</h3>
+            </div>
+            <p className="text-sm text-white mt-2">Click here to select a PowerPoint file</p>
             <input
+              id="file-input"
               type="file"
               accept=".pptx"
               onChange={handleFileChange}
-              className="px-4 py-2 text-black w-full rounded-lg"
+              className="hidden"
             />
           </div>
-        </div>
           <button
             onClick={handleCheckButtonClick}
             className="hover:text-white mt-8 px-10 py-3 font-bold text-xl text-black bg-white rounded-3xl transition-colors hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500"

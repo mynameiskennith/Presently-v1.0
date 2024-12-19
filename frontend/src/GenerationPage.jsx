@@ -7,9 +7,9 @@ const GenerationPage = () => {
         numberOfSlides: 1,
         slideContent: "",
     });
-    const [isGenerating, setIsGenerating] = useState(false); // Loading state
+    const [isGenerating, setIsGenerating] = useState(false);
     const [isGenerationForm, setGenrationForm] = useState(true);
-    const [pptFileUrl, setPptFileUrl] = useState(null); // Store generated PPT file URL
+    const [pptFileUrl, setPptFileUrl] = useState(null);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -18,7 +18,7 @@ const GenerationPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsGenerating(true); // Set loading state to true
+        setIsGenerating(true);
 
         const requestData = {
             topic: formData.topic,
