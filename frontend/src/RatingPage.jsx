@@ -145,7 +145,7 @@ const RatingPage = () => {
         </div>
           <button
             onClick={handleCheckButtonClick}
-            className="mt-8 px-10 py-3 font-bold text-xl text-black bg-white rounded-3xl transition-colors hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500"
+            className="hover:text-white mt-8 px-10 py-3 font-bold text-xl text-black bg-white rounded-3xl transition-colors hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500"
             disabled={loading}
           >
             {loading ? "Scanning..." : "Check"}
@@ -200,7 +200,7 @@ const RatingPage = () => {
           </div>
           <button
             onClick={handleCheckAnotherButtonClick}
-            className="mt-10 px-8 py-3 font-bold text-black bg-white rounded-lg transition-colors hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500"
+            className="hover:text-white mt-10 px-8 py-3 font-bold text-black bg-white rounded-lg transition-colors hover:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500"
           >
             Check Another Presentation
           </button>
