@@ -1,14 +1,14 @@
 import './App.css';
-import LandingPage from './LandingPage';
-import SelectionPage from './SelectionPage';
-import Navbar from './Navbar';
-import NotFound from './NotFound';
+import LandingPage from './components/LandingPage';
+import SelectionPage from './components/SelectionPage';
+import Navbar from './components/Navbar';
+import NotFound from './components/NotFound';
 import { BrowserRouter as Router, Route, Switch, useLocation } from 'react-router-dom';
-import LoginPage from './LoginPage';
-import SignUpPage from './SignUpPage';
-import RatingPage from './RatingPage';
-import TrainingPage from './TrainingPage';
-import GenerationPage from './GenerationPage';
+import LoginPage from './components/LoginPage';
+import SignUpPage from './components/SignUpPage';
+import RatingPage from './components/RatingPage';
+import TrainingPage from './components/TrainingPage';
+import GenerationPage from './components/GenerationPage';
 import { useState, useEffect } from 'react';
 
 function App() {
